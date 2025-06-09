@@ -1,0 +1,71 @@
+{
+  "base": [
+    {
+      "url": "public/base/squrcle.svg"
+    },
+    {
+      "url": "public/base/circle.svg"
+    }
+  ],
+  "cheek": [
+    {
+      "url": "public/cheek/cheeks.svg"
+    }
+  ],
+  "eye": [
+    {
+      "url": "public/eyes/happy-crescent.svg"
+    },
+    {
+      "url": "public/eyes/wide.svg"
+    }
+  ],
+  "brow": [
+    {
+      "url": "public/brows/soft-mid.svg"
+    },
+    {
+      "url": "public/brows/serious.svg"
+    },
+    {
+      "url": "public/brows/soft.svg"
+    },
+    {
+      "url": "public/brows/suprise.svg"
+    },
+    {
+      "url": "public/brows/worry.svg"
+    }
+  ],
+  "mouth": [
+    {
+      "url": "public/mouth/down-open.svg"
+    },
+    {
+      "url": "public/mouth/frown.svg"
+    },
+    {
+      "url": "public/mouth/gasp.svg"
+    },
+    {
+      "url": "public/mouth/grin.svg"
+    },
+    {
+      "url": "public/mouth/jaw-drop.svg"
+    },
+    {
+      "url": "public/mouth/smile-teeth.svg"
+    }
+  ],
+  "hat": [
+    {
+      "url": "public/hat/empty.svg"
+    },
+    {
+      "url": "public/hat/sweat.svg"
+    },
+    {
+      "url": "public/hat/horns.svg"
+    }
+  ]
+}

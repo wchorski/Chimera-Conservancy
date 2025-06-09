@@ -1,0 +1,1 @@
+export type PartType = "base"|"cheek"|"eye"|"brow"|"mouth"|"hat"

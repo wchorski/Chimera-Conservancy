@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .cls-1,.cls-2{fill:#1a1a1a;}.cls-1{opacity:0;}.cls-3{fill:#fec92b;}.cls-4{fill:#fdaf18;}.cls-5{fill:#fff;}.cls-6{fill:#96dbff;}
+    </style>
+  </defs>
+  <title>soft mid brows</title>
+  <g>
+    <ellipse class="cls-4" cx="19.34" cy="20.76" rx="4.66" ry="2.79"
+      transform="translate(-1.74 1.76) rotate(-5)" />
+    <ellipse class="cls-4" cx="44.66" cy="20.76" rx="2.79" ry="4.66"
+      transform="translate(20.09 63.43) rotate(-85)" />
+  </g>
+</svg>

@@ -1,0 +1,125 @@
+:root {
+	--c-top: #fff88f;
+	/* --c-middle: rgb(255, 255, 255); */
+	--c-bottom: #f9c424;
+	/* --c-bottom: lime; */
+}
+body {
+	background-color: darkgreen;
+}
+
+#base {
+	z-index: 1;
+}
+#cheek {
+	z-index: 2;
+}
+#eye {
+	z-index: 3;
+}
+#brow {
+	z-index: 4;
+}
+#mouth {
+	z-index: 4;
+}
+#hat {
+	z-index: 4;
+}
+
+.c-worry {
+	--c-top: #37b9ff;
+	--c-bottom: #fec92b;
+}
+
+.face {
+	display: grid;
+	grid-template-areas: stack;
+	place-items: center;
+	width: 150px;
+
+	& > img,
+	& > svg {
+		grid-area: stack;
+		width: 200px;
+	}
+}
+
+.cls-1,
+.cls-2 {
+	fill: #1a1a1a;
+}
+.cls-1 {
+	opacity: 0;
+}
+/* face bg */
+.cls-3 {
+	fill: #fec92b;
+}
+/* chin */
+.cls-4 {
+	fill: var(--c-bottom);
+	/* mix-blend-mode: color-burn; */
+}
+.cls-5 {
+	fill: #fff;
+}
+.cls-6{
+  color: red;
+}
+
+#category-tabs {
+	--br: 10px;
+	list-style: none;
+	display: flex;
+	width: 100%;
+	justify-content: space-evenly;
+
+	& > button {
+		flex: 1;
+		border: solid navy 1px;
+		padding: 0.3rem;
+		background: linear-gradient(
+			180deg,
+			skyblue 10%,
+			rgb(79, 147, 174) 60%,
+			rgb(62, 62, 197) 80%,
+			navy 100%
+		);
+		color: white;
+	}
+
+	& > button:first-child {
+		border-top-left-radius: var(--br);
+		border-bottom-left-radius: var(--br);
+	}
+	& > button:last-child {
+		border-top-right-radius: var(--br);
+		border-bottom-right-radius: var(--br);
+	}
+}
+
+#part-tiles {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 0.2rem;
+
+	& > button {
+		height: 5rem;
+		border-radius: 15px;
+
+		& > svg {
+			filter: drop-shadow(rgba(0, 0, 0, 0.329) 2px 2px 3px);
+			height: 100%;
+		}
+	}
+}
+
+button:hover {
+	cursor: pointer;
+	filter: brightness(1.2);
+}
+button:active {
+	cursor: pointer;
+	filter: brightness(0.8);
+}
