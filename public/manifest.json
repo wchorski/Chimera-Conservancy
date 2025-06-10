@@ -22,7 +22,7 @@
   ],
   "brow": [
     {
-      "url": "public/brows/soft-mid.svg"
+      "url": "public/brows/worry.svg"
     },
     {
       "url": "public/brows/serious.svg"
@@ -32,9 +32,6 @@
     },
     {
       "url": "public/brows/suprise.svg"
-    },
-    {
-      "url": "public/brows/worry.svg"
     }
   ],
   "mouth": [

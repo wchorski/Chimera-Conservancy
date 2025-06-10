@@ -12,6 +12,7 @@ const avatarParts = await fetch("./public/manifest.json")
 const faceContainer = document.getElementById("face-wrap")
 const partTiles = document.getElementById("part-tiles")
 const categoryTabs = document.getElementById("category-tabs")
+let activeTileSet = document.createElement("div")
 
 /**
  * @async
@@ -20,14 +21,13 @@ const categoryTabs = document.getElementById("category-tabs")
  * @throws {Error}
  * */
 async function fetchSVGText(url) {
-  try {
-    const response = await fetch(url)
-    const svgText = await response.text()
-    return svgText
-    
-  } catch (error) {
-    throw new Error(error)
-  }
+	try {
+		const response = await fetch(url)
+		const svgText = await response.text()
+		return svgText
+	} catch (error) {
+		throw new Error(error)
+	}
 }
 
 /**
@@ -81,6 +81,8 @@ async function main() {
 			} else {
 				console.warn(`No valid option found for part type: ${partType}`)
 			}
+
+			loadTileSet(partType)
 		}
 
 		// console.log("Avatar loaded successfully")
@@ -88,14 +90,18 @@ async function main() {
 		console.error("Failed to load avatar parts:", error)
 	}
 
-	updateTileSet("base")
+	// loadTileSet("base")
 	setupUi()
 }
 
 /**
  * @param {PartType} type
  */
-async function updateTileSet(type) {
+async function loadTileSet(type) {
+	const wrapper = document.createElement("div")
+	wrapper.classList.add("tileset-grid")
+	wrapper.id = `${type}-tiles`
+
 	const btns = await Promise.all(
 		avatarParts[type].map(async (part, i) => {
 			const btn = document.createElement("button")
@@ -109,7 +115,24 @@ async function updateTileSet(type) {
 		})
 	)
 
-	partTiles.replaceChildren(...btns)
+	if (type === "base") {
+		wrapper.classList.add("active")
+		activeTileSet = wrapper
+	} else {
+		wrapper.classList.add("hidden")
+	}
+
+	wrapper.replaceChildren(...btns)
+	partTiles.append(wrapper)
+}
+
+/**
+ * @param {PartType} type
+ */
+function updateTileSet(type) {
+	activeTileSet.classList.add("hidden")
+	activeTileSet = document.getElementById(`${type}-tiles`)
+	activeTileSet.classList.remove("hidden")
 }
 
 function setupUi() {

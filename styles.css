@@ -1,8 +1,11 @@
 :root {
-	--c-top: #fff88f;
+	--c-top: Khaki;
 	/* --c-middle: rgb(255, 255, 255); */
-	--c-bottom: #f9c424;
-	/* --c-bottom: lime; */
+	--c-bottom: goldenrod;
+	--brow-y-offset: -10px;
+	--brow-x-offset: 0px;
+	--brow-scale: 1;
+	--brow-rotation: 0deg;
 }
 body {
 	background-color: darkgreen;
@@ -54,18 +57,46 @@ body {
 }
 /* face bg */
 .cls-3 {
-	fill: #fec92b;
+	fill: #022905;
 }
 /* chin */
 .cls-4 {
-	fill: var(--c-bottom);
-	/* mix-blend-mode: color-burn; */
+	fill: var(--c-bottom, crimson);
 }
 .cls-5 {
 	fill: #fff;
 }
-.cls-6{
-  color: red;
+.cls-6 {
+	color: red;
+}
+
+ellipse.brow,
+path.brow {
+	transform-origin: center;
+	transform-origin: 50% 50%;
+	transition: transform 0.3s ease;
+}
+
+ellipse.brow.left,
+path.brow.left {
+	/* transform-origin: center left; */
+	transform: translate(var(--brow-x-offset, 0px), var(--brow-y-offset, 0px))
+		scale(var(--brow-scale, 1)) rotate(var(--brow-rotation, 0deg));
+    /* ! causes int transform issues */
+	/* translate: var(--brow-x-offset, 0px) var(--brow-y-offset, 0px); */
+	/* scale: var(--brow-scale, 1); */
+}
+ellipse.brow.right,
+path.brow.right {
+	/* transform-origin: center right; */
+	transform: translate(
+			calc(var(--brow-x-offset, 0px) * -1),
+			var(--brow-y-offset, 0px)
+		)
+		scale(var(--brow-scale, 1)) rotate(calc(var(--brow-rotation, 0deg) * -1));
+	/* ! causes init transform issues */
+	/* translate: calc(var(--brow-x-offset, 0px) * -1) var(--brow-y-offset, 0px); */
+	/* scale: var(--brow-scale, 1); */
 }
 
 #category-tabs {
@@ -99,7 +130,7 @@ body {
 	}
 }
 
-#part-tiles {
+.tileset-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 0.2rem;
@@ -107,6 +138,7 @@ body {
 	& > button {
 		height: 5rem;
 		border-radius: 15px;
+		/* aspect-ratio: 1; */
 
 		& > svg {
 			filter: drop-shadow(rgba(0, 0, 0, 0.329) 2px 2px 3px);
@@ -122,4 +154,17 @@ button:hover {
 button:active {
 	cursor: pointer;
 	filter: brightness(0.8);
+}
+
+.hidden {
+	display: none;
+}
+
+.avatar-preview {
+	display: flex;
+	justify-content: space-between;
+}
+
+.grid {
+	display: grid;
 }

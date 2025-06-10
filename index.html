@@ -6,62 +6,73 @@
 		<title>Chimera Conservancy</title>
 		<link rel="stylesheet" href="styles.css" />
 		<script src="script.js" type="module" defer></script>
+		<script src="toolbar.js" type="module" defer></script>
 	</head>
 	<body>
-		<!-- <h1>Chimera Conservancy</h1> -->
-		<!-- <img src="public/Beaming face with smiling eyes copy.svg" width="300" /> -->
-		<div class="face" id="face-wrap"></div>
+		<h1 class="hidden">Chimera Conservancy</h1>
+		<!-- <img src="./public/Clown face copy.svg" width="300" /> -->
+		<section class="avatar-preview">
+			<div class="face" id="face-wrap"></div>
+			<aside role="toolbar">
+				<fieldset class="grid">
+					<label class="grid">
+						<span>top color</span>
+						<input type="color" id="colorpicker-top" />
+					</label>
+					<label class="grid">
+						<span>bottom color</span>
+						<input type="color" id="colorpicker-bottom" />
+					</label>
+				</fieldset>
+				<fieldset class="grid">
+					<legend>brow editor</legend>
+					<label>
+						<span title="raise">⇡</span>
+						<input
+							type="range"
+							min="-1"
+							max="1"
+							step="0.1"
+							value="0.5"
+							id="brow-transform-y"
+						/>
+						<span title="lower">⇣</span>
+					</label>
+					<label>
+						<span title="seperate">●￩￫●</span>
+						<input
+							type="range"
+							min="-1"
+							max="1"
+							step="0.1"
+							value="0"
+							id="brow-transform-x"
+						/>
+						<span title="merge">￫●●￩</span>
+					</label>
+					<label>
+						<span title="shrink">◈</span>
+						<input
+							type="range"
+							min="0.1"
+							max="1"
+							step="0.1"
+							value="0.5"
+							id="brow-scale"
+						/>
+						<span title="grow">⤢</span>
+					</label>
+					<label>
+						<span title="clockwise">⤾</span>
+						<input type="range" min="-1" max="1" step="0.1" value="0" id="brow-transform-rotate"/>
+						<span title="counter clockwise">⤿</span>
+					</label>
+				</fieldset>
+			</aside>
+		</section>
 
-		<section id="category-tabs" role="category selector">
-			<!-- <button>head</button>
-			<button>hair</button>
-			<button>brows</button>
-			<button>eyes</button>
-			<button>nose</button>
-			<button>mouth</button>
-			<button>misc</button> -->
-		</section>
+		<section id="category-tabs" role="category selector"></section>
 		<br />
-		<section id="part-tiles">
-			<!-- <button>
-				<img
-					src="public/mouth/down-open.svg"
-					alt="mouth"
-					height="70"
-					width="70"
-				/>
-			</button>
-			<button>
-				<img src="public/mouth/frown.svg" alt="mouth" height="70" width="70" />
-			</button>
-			<button>
-				<img src="public/mouth/gasp.svg" alt="mouth" height="70" width="70" />
-			</button>
-			<button>
-				<img src="public/mouth/grin.svg" alt="mouth" height="70" width="70" />
-			</button>
-			<button>
-				<img
-					src="public/mouth/jaw-drop.svg"
-					alt="mouth"
-					height="70"
-					width="70"
-				/>
-			</button>
-			<button>
-				<img
-					src="public/mouth/smile-teeth.svg"
-					alt="mouth"
-					height="70"
-					width="70"
-				/>
-			</button>
-			<button>item</button>
-			<button>item</button>
-			<button>item</button>
-			<button>item</button>
-			<button>item</button>
-			<button>item</button> -->
-		</section>
+		<section id="part-tiles"></section>
 	</body>
 </html>
