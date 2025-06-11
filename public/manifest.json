@@ -10,17 +10,23 @@
   "cheek": [
     {
       "url": "public/cheek/cheeks.svg"
+    },
+    {
+      "url": "public/hat/empty.svg"
     }
   ],
   "eye": [
     {
-      "url": "public/eyes/happy-crescent.svg"
+      "url": "public/eyes/wide.svg"
     },
     {
-      "url": "public/eyes/wide.svg"
+      "url": "public/eyes/happy-crescent.svg"
     }
   ],
   "brow": [
+    {
+      "url": "public/brows/soft.svg"
+    },
     {
       "url": "public/brows/worry.svg"
     },
@@ -28,13 +34,13 @@
       "url": "public/brows/serious.svg"
     },
     {
-      "url": "public/brows/soft.svg"
-    },
-    {
       "url": "public/brows/suprise.svg"
     }
   ],
   "mouth": [
+    {
+      "url": "public/mouth/smile-teeth.svg"
+    },
     {
       "url": "public/mouth/down-open.svg"
     },
@@ -49,12 +55,12 @@
     },
     {
       "url": "public/mouth/jaw-drop.svg"
-    },
-    {
-      "url": "public/mouth/smile-teeth.svg"
     }
   ],
   "hat": [
+    {
+      "url": "public/hat/clown-hair.svg"
+    },
     {
       "url": "public/hat/empty.svg"
     },

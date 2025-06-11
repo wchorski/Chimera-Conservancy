@@ -5,26 +5,27 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Chimera Conservancy</title>
 		<link rel="stylesheet" href="styles.css" />
+		<link rel="stylesheet" href="parts.css" />
 		<script src="script.js" type="module" defer></script>
 		<script src="toolbar.js" type="module" defer></script>
 	</head>
 	<body>
 		<h1 class="hidden">Chimera Conservancy</h1>
-		<!-- <img src="./public/Clown face copy.svg" width="300" /> -->
+		<img src="./public/Clown face copy.svg" width="300" />
 		<section class="avatar-preview">
 			<div class="face" id="face-wrap"></div>
 			<aside role="toolbar">
-				<fieldset class="grid">
+				<fieldset class="grid" id="color-editor">
 					<label class="grid">
 						<span>top color</span>
-						<input type="color" id="colorpicker-top" />
+						<input type="color" id="colorpicker-top" value="#f0e376"/>
 					</label>
 					<label class="grid">
 						<span>bottom color</span>
-						<input type="color" id="colorpicker-bottom" />
+						<input type="color" id="colorpicker-bottom" value="#daa520"/>
 					</label>
 				</fieldset>
-				<fieldset class="grid">
+				<fieldset class="grid" id="brow-editor">
 					<legend>brow editor</legend>
 					<label>
 						<span title="raise">⇡</span>
@@ -33,7 +34,7 @@
 							min="-1"
 							max="1"
 							step="0.1"
-							value="0.5"
+							value="-0.3"
 							id="brow-transform-y"
 						/>
 						<span title="lower">⇣</span>
@@ -54,7 +55,7 @@
 						<span title="shrink">◈</span>
 						<input
 							type="range"
-							min="0.1"
+							min="0.3"
 							max="1"
 							step="0.1"
 							value="0.5"
@@ -65,6 +66,50 @@
 					<label>
 						<span title="clockwise">⤾</span>
 						<input type="range" min="-1" max="1" step="0.1" value="0" id="brow-transform-rotate"/>
+						<span title="counter clockwise">⤿</span>
+					</label>
+				</fieldset>
+				<fieldset class="grid" id="eye-editor">
+					<legend>eye editor</legend>
+					<label>
+						<span title="raise">⇡</span>
+						<input
+							type="range"
+							min="-1"
+							max="1"
+							step="0.1"
+							value="-0.3"
+							id="eye-transform-y"
+						/>
+						<span title="lower">⇣</span>
+					</label>
+					<label>
+						<span title="seperate">●￩￫●</span>
+						<input
+							type="range"
+							min="-1"
+							max="1"
+							step="0.1"
+							value="0"
+							id="eye-transform-x"
+						/>
+						<span title="merge">￫●●￩</span>
+					</label>
+					<label>
+						<span title="shrink">◈</span>
+						<input
+							type="range"
+							min="0.3"
+							max="1"
+							step="0.1"
+							value="0.5"
+							id="eye-scale"
+						/>
+						<span title="grow">⤢</span>
+					</label>
+					<label>
+						<span title="clockwise">⤾</span>
+						<input type="range" min="-1" max="1" step="0.1" value="0" id="eye-transform-rotate"/>
 						<span title="counter clockwise">⤿</span>
 					</label>
 				</fieldset>

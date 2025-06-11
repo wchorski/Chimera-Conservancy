@@ -2,10 +2,6 @@
 	--c-top: Khaki;
 	/* --c-middle: rgb(255, 255, 255); */
 	--c-bottom: goldenrod;
-	--brow-y-offset: -10px;
-	--brow-x-offset: 0px;
-	--brow-scale: 1;
-	--brow-rotation: 0deg;
 }
 body {
 	background-color: darkgreen;
@@ -70,34 +66,6 @@ body {
 	color: red;
 }
 
-ellipse.brow,
-path.brow {
-	transform-origin: center;
-	transform-origin: 50% 50%;
-	transition: transform 0.3s ease;
-}
-
-ellipse.brow.left,
-path.brow.left {
-	/* transform-origin: center left; */
-	transform: translate(var(--brow-x-offset, 0px), var(--brow-y-offset, 0px))
-		scale(var(--brow-scale, 1)) rotate(var(--brow-rotation, 0deg));
-    /* ! causes int transform issues */
-	/* translate: var(--brow-x-offset, 0px) var(--brow-y-offset, 0px); */
-	/* scale: var(--brow-scale, 1); */
-}
-ellipse.brow.right,
-path.brow.right {
-	/* transform-origin: center right; */
-	transform: translate(
-			calc(var(--brow-x-offset, 0px) * -1),
-			var(--brow-y-offset, 0px)
-		)
-		scale(var(--brow-scale, 1)) rotate(calc(var(--brow-rotation, 0deg) * -1));
-	/* ! causes init transform issues */
-	/* translate: calc(var(--brow-x-offset, 0px) * -1) var(--brow-y-offset, 0px); */
-	/* scale: var(--brow-scale, 1); */
-}
 
 #category-tabs {
 	--br: 10px;
@@ -167,4 +135,8 @@ button:active {
 
 .grid {
 	display: grid;
+}
+
+.z-0 {
+  z-index: 0;
 }
