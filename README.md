@@ -4,11 +4,22 @@ A pet / farm simulator game that is playable through the browser.
 ## Face Creator
 A Mii style emoji editor to create player avitars
 
+### Face Layers
+0. base
+1. cheeks (could go above or behind mouth)
+2. eyes
+3. brows
+4. mouth
+5. hat (hair, etc can also have partials that go behind base)
+6. misc
+
 ## Future
 #todo
+- [ ] set each svg layer with a `data-z` attribute. re-render whole svg on change to correct the stack
 - [ ] preset skin colors with popup sliders
 
 ## Credits
 > Vector Ranks Pack by @RhosGFX!
 > offered for free under Creative Commons CC0. 
 > https://creativecommons.org/publicdomain/zero/1.0/
+- https://www.motiontricks.com/creating-dynamic-svg-elements-with-javascript/

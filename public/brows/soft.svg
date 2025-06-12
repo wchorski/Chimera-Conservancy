@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <title>brows soft</title>
-  <g transform="translate(0,15)">
+  <g transform="translate(0,15)" data-z="3">
     <ellipse class="cls-4 brow left" cx="19.34" cy="15.76" rx="4.66" ry="2.79"
       transform="translate(-1.3 1.75) rotate(-5)" />
     <ellipse class="cls-4 brow right" cx="44.66" cy="15.76" rx="4.66" ry="2.79"

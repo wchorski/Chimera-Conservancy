@@ -11,18 +11,37 @@
 	</head>
 	<body>
 		<h1 class="hidden">Chimera Conservancy</h1>
-		<img src="./public/Clown face copy.svg" width="300" />
+		<!-- <img src="./public/Clown face copy.svg" width="300" /> -->
 		<section class="avatar-preview">
-			<div class="face" id="face-wrap"></div>
+			<svg id="face-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+				<title>Face Creator</title>
+				<defs>
+					<linearGradient
+						id="varGradient"
+						x1="0%"
+						y1="0%"
+						x2="0%"
+						y2="100%"
+						gradientUnits="userSpaceOnUse"
+					>
+						<stop offset="0%" stop-color="var(--c-top, gold)" />
+						<stop offset="10%" stop-color="var(--c-top, gold)" />
+						<stop offset="88%" stop-color="var(--c-bottom, goldenrod)" />
+						<stop offset="100%" stop-color="var(--c-bottom, goldenrod)" />
+					</linearGradient>
+				</defs>
+        
+			</svg>
+
 			<aside role="toolbar">
 				<fieldset class="grid" id="color-editor">
 					<label class="grid">
 						<span>top color</span>
-						<input type="color" id="colorpicker-top" value="#f0e376"/>
+						<input type="color" id="colorpicker-top" value="#f0e376" />
 					</label>
 					<label class="grid">
 						<span>bottom color</span>
-						<input type="color" id="colorpicker-bottom" value="#daa520"/>
+						<input type="color" id="colorpicker-bottom" value="#daa520" />
 					</label>
 				</fieldset>
 				<fieldset class="grid" id="brow-editor">
@@ -65,7 +84,14 @@
 					</label>
 					<label>
 						<span title="clockwise">⤾</span>
-						<input type="range" min="-1" max="1" step="0.1" value="0" id="brow-transform-rotate"/>
+						<input
+							type="range"
+							min="-1"
+							max="1"
+							step="0.1"
+							value="0"
+							id="brow-transform-rotate"
+						/>
 						<span title="counter clockwise">⤿</span>
 					</label>
 				</fieldset>
@@ -109,14 +135,21 @@
 					</label>
 					<label>
 						<span title="clockwise">⤾</span>
-						<input type="range" min="-1" max="1" step="0.1" value="0" id="eye-transform-rotate"/>
+						<input
+							type="range"
+							min="-1"
+							max="1"
+							step="0.1"
+							value="0"
+							id="eye-transform-rotate"
+						/>
 						<span title="counter clockwise">⤿</span>
 					</label>
 				</fieldset>
 			</aside>
 		</section>
 
-		<section id="category-tabs" role="category selector"></section>
+		<section id="category-tabs" role="category"></section>
 		<br />
 		<section id="part-tiles"></section>
 	</body>

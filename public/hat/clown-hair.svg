@@ -5,7 +5,7 @@
     </style>
   </defs>
   <title>Clown Hair</title>
-  <g>
+  <g data-z="5">
     <path class="cls-red z-0"
       d="M12.25,10.18c.73,2.19,2.61,1.93,4.8,1.2s3.86-1.65,3.13-3.84a4.18,4.18,0,0,0-7.93,2.64Z" />
     <path class="cls-red z-0"

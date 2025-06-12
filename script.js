@@ -1,18 +1,40 @@
 /**
  * @typedef {import('./Types').PartType} PartType
  */
+
 /**
  * Avatar parts manifest with nested arrays of options
  * @type {Object.<PartType, Array<{url: string}>>}
  */
-const avatarParts = await fetch("./public/manifest.json")
+const manifest = await fetch("./public/manifest.json")
 	.then((r) => r.json())
-	.catch((error) => console.log(error))
+	.catch((error) => {
+		console.log(error)
+		return {}
+	})
 
-const faceContainer = document.getElementById("face-wrap")
+/**
+ * @type {Object.<PartType, Array<SVGElement>>}
+ */
+const avatarEls = {
+	base: [],
+	eye: [],
+}
+const faceSVG = document.getElementById("face-svg")
 const partTiles = document.getElementById("part-tiles")
 const categoryTabs = document.getElementById("category-tabs")
 let activeTileSet = document.createElement("div")
+
+function drawAvatar() {
+	const allElements = Object.values(avatarEls).flat()
+	const sorted = allElements.sort(
+		(a, b) => (Number(a.dataset.z) || 0) - (Number(b.dataset.z) || 0)
+	)
+	const title = faceSVG.querySelector("title")
+	const defs = faceSVG.querySelector("defs")
+	console.log(sorted)
+	faceSVG.replaceChildren(title, defs, ...sorted)
+}
 
 /**
  * @async
@@ -20,7 +42,7 @@ let activeTileSet = document.createElement("div")
  * @returns {Promise<string>}
  * @throws {Error}
  * */
-async function fetchSVGText(url) {
+async function fetchSVGPartialText(url) {
 	try {
 		const response = await fetch(url)
 		const svgText = await response.text()
@@ -31,89 +53,141 @@ async function fetchSVGText(url) {
 }
 
 /**
- * @param {string} svgText
- * @param {PartType} partType
- * @returns {SVGElement}
+ * Method 1: Using DOMParser (Recommended - Most Secure)
+ * @param {string} svgText - SVG markup as string
+ * @param {string} partType - Type identifier for the part
+ * @returns {SVGGElement|null}
  */
-function getSVGElement(svgText, partType) {
-	const tempDiv = document.createElement("div")
-	tempDiv.innerHTML = svgText
+function getSVGPartial(svgText, partType) {
+	try {
+		const parser = new DOMParser()
+		const doc = parser.parseFromString(svgText, "image/svg+xml")
 
-	const svgElement = tempDiv.querySelector("svg")
-	if (svgElement) {
-		svgElement.classList.add("avatar-part")
-		svgElement.id = partType
-		svgElement.setAttribute("data-part", partType)
+		// Check for parsing errors
+		const errorNode = doc.querySelector("parsererror")
+		if (errorNode) {
+			console.error("SVG parsing error:", errorNode.textContent)
+			return null
+		}
 
-		return svgElement
+		const svgPartial = doc.querySelector("g")
+
+		if (svgPartial) {
+			// Need to import the node into the current document
+			const importedElement = document.importNode(svgPartial, true)
+			importedElement.classList.add("avatar-part")
+			importedElement.id = partType
+			importedElement.setAttribute("data-part", partType)
+
+			return importedElement
+		} else {
+			console.warn(`SVG g element not found for partType: ${partType}`)
+			return null
+		}
+	} catch (error) {
+		console.error("Error parsing SVG:", error)
+		return null
 	}
 }
 
 /**
- * @param {string} url
- * @param {PartType} partType
- * @returns {Promise<void>}
+ * @param {SVGElement} g
+ * @param {string} titleContent
  */
-async function updatePart(url, partType) {
+function createSVGElementWrapper(g, titleContent) {
+	// Create the SVG element
+	const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
+	svg.setAttribute("xmlns", "http://www.w3.org/2000/svg")
+	svg.setAttribute("viewBox", "0 0 64 64")
+
+	// Create and append the title element
+	const title = document.createElementNS("http://www.w3.org/2000/svg", "title")
+	title.textContent = titleContent
+	svg.append(title)
+
+	// Create and append the g element
+	// const g = document.createElementNS("http://www.w3.org/2000/svg", "g")
+	svg.append(g)
+
+	return svg
+}
+
+/**
+ * @param {PartType} type
+ * @param {string} i
+ * @returns {void}
+ */
+function updatePart(type, i) {
 	// Remove existing element with this class
-	const existingElement = document.getElementById(partType)
+	const existingElement = document.getElementById(type)
 	if (existingElement) {
 		existingElement.remove()
 	}
+	console.log(avatarEls)
 
-	// Load and add new SVG
-	const svgText = await fetchSVGText(url)
-	const el = await getSVGElement(svgText, partType)
-	faceContainer.append(el)
+	const clonedEl = manifest[type][i].el.cloneNode(true)
+	// find by type and replace current part
+  avatarEls[type].length = 0
+  avatarEls[type].push(clonedEl)
+  console.log(avatarEls);
+  drawAvatar()
 }
 
 async function main() {
 	try {
-		// Loop through each key in avatarParts and get the first element from each array
-		for (const [partType, partOptions] of Object.entries(avatarParts)) {
-			// Get the first option from the array
-			const firstOption = partOptions[0]
+		await Promise.all(
+			Object.entries(manifest).map(async ([type, partOptions], index) => {
+				await Promise.all(
+					partOptions.map(async (part, i) => {
+						const svgText = await fetchSVGPartialText(part.url)
+						const el = await getSVGPartial(svgText, type)
+						manifest[type][i].el = el
+					})
+				)
+			})
+		)
 
-			if (firstOption && firstOption.url) {
-				const svgText = await fetchSVGText(firstOption.url)
-				const el = await getSVGElement(svgText, partType)
-				faceContainer.append(el)
-			} else {
-				console.warn(`No valid option found for part type: ${partType}`)
-			}
+		// const defaultBase = manifest.base[0].el.cloneNode(true)
+		// const defaultEye = manifest.eye[0].el.cloneNode(true)
+		// faceSVG.append(defaultBase)
+		// faceSVG.append(defaultEye)
 
-			loadTileSet(partType)
-		}
+		const buildBase = manifest.base[0].el.cloneNode(true)
+		const buildEye = manifest.eye[0].el.cloneNode(true)
+		avatarEls.base.push(buildBase)
+		avatarEls.eye.push(buildEye)
 
-		// console.log("Avatar loaded successfully")
+		drawAvatar()
+
+		Object.entries(manifest).forEach(([type, partOptions], index) => {
+			loadTileSet(type)
+		})
 	} catch (error) {
 		console.error("Failed to load avatar parts:", error)
 	}
 
-	// loadTileSet("base")
 	setupUi()
 }
 
 /**
  * @param {PartType} type
  */
-async function loadTileSet(type) {
+function loadTileSet(type) {
 	const wrapper = document.createElement("div")
 	wrapper.classList.add("tileset-grid")
 	wrapper.id = `${type}-tiles`
 
-	const btns = await Promise.all(
-		avatarParts[type].map(async (part, i) => {
-			const btn = document.createElement("button")
-			btn.addEventListener("click", (e) => updatePart(part.url, type))
+	const btns = manifest[type].map((part, i) => {
+		const btn = document.createElement("button")
+		// TODO don't forget event listener
+		btn.addEventListener("click", (e) => updatePart(type, i))
 
-			const svgText = await fetchSVGText(part.url)
-			const svgEl = getSVGElement(svgText, type)
+		const gEl = manifest[type][i].el
+		const svgEl = createSVGElementWrapper(gEl, type)
 
-			btn.appendChild(svgEl)
-			return btn
-		})
-	)
+		btn.append(svgEl)
+		return btn
+	})
 
 	if (type === "base") {
 		wrapper.classList.add("active")
@@ -136,10 +210,11 @@ function updateTileSet(type) {
 }
 
 function setupUi() {
-	const keys = Object.keys(avatarParts)
+	const keys = Object.keys(manifest)
 
 	keys.map(async (type, i) => {
 		const btn = document.createElement("button")
+		btn.type = "button"
 		btn.addEventListener("click", (e) => updateTileSet(type))
 		btn.innerText = type
 		categoryTabs.append(btn)
@@ -147,3 +222,42 @@ function setupUi() {
 }
 
 main()
+
+// debug
+
+// Method 2: More direct approach using DOMParser
+async function loadCircleSVGWithParser() {
+	try {
+		// const response = await fetch("./public/clown-face-copy.svg")
+		const response = await fetch("./public/eyes/wide.svg")
+		const svgText = await response.text()
+
+		// Parse the SVG content
+		const parser = new DOMParser()
+		const svgDoc = parser.parseFromString(svgText, "image/svg+xml")
+
+		// Get the <g> element
+		const gElement = svgDoc.querySelector("g")
+
+		// Get the existing SVG element
+		const svg = document.getElementById("face-svg")
+
+		if (gElement && svg) {
+			// Import and append the node to the existing SVG
+			const importedNode = document.importNode(gElement, true)
+			svg.appendChild(importedNode)
+		}
+
+		let newRect = document.createElementNS("http://www.w3.org/2000/svg", "rect")
+		newRect.setAttribute("x", "150")
+		newRect.setAttribute("y", "150")
+		newRect.setAttribute("width", "100")
+		newRect.setAttribute("height", "100")
+		newRect.setAttribute("fill", "#5cceee")
+
+		svg.appendChild(newRect)
+	} catch (error) {
+		console.error("Error loading SVG:", error)
+	}
+}
+// loadCircleSVGWithParser()
