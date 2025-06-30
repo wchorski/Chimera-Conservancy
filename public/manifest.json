@@ -4,15 +4,202 @@
       "url": "public/base/squrcle.svg"
     },
     {
+      "url": "public/base/half.svg"
+    },
+    {
       "url": "public/base/circle.svg"
     }
   ],
   "eye": [
     {
+      "url": "public/eyes/strained.svg"
+    },
+    {
       "url": "public/eyes/wide.svg"
     },
     {
+      "url": "public/eyes/no-pupil.svg"
+    },
+    {
+      "url": "public/eyes/wink.svg"
+    },
+    {
+      "url": "public/eyes/tear-up.svg"
+    },
+    {
+      "url": "public/eyes/flat-slits.svg"
+    },
+    {
+      "url": "public/eyes/large.svg"
+    },
+    {
+      "url": "public/eyes/slight-up-crescent.svg"
+    },
+    {
+      "url": "public/eyes/crossed-out.svg"
+    },
+    {
+      "url": "public/eyes/down-crescent.svg"
+    },
+    {
+      "url": "public/eyes/squint.svg"
+    },
+    {
+      "url": "public/eyes/blue-lined.svg"
+    },
+    {
       "url": "public/eyes/happy-crescent.svg"
+    }
+  ],
+  "brow": [
+    {
+      "url": "public/brows/soft.svg"
+    },
+    {
+      "url": "public/brows/one-raised.svg"
+    },
+    {
+      "url": "public/brows/worry.svg"
+    },
+    {
+      "url": "public/brows/serious.svg"
+    },
+    {
+      "url": "public/brows/suprise.svg"
+    }
+  ],
+  "mouth": [
+    {
+      "url": "public/mouth/open-smile.svg"
+    },
+    {
+      "url": "public/mouth/mask.svg"
+    },
+    {
+      "url": "public/mouth/open-hand.svg"
+    },
+    {
+      "url": "public/mouth/vomit.svg"
+    },
+    {
+      "url": "public/mouth/open-no-teeth.svg"
+    },
+    {
+      "url": "public/mouth/side-tongue.svg"
+    },
+    {
+      "url": "public/mouth/exhale.svg"
+    },
+    {
+      "url": "public/mouth/kiss.svg"
+    },
+    {
+      "url": "public/mouth/slight-open-smile.svg"
+    },
+    {
+      "url": "public/mouth/flat.svg"
+    },
+    {
+      "url": "public/mouth/open-down.svg"
+    },
+    {
+      "url": "public/mouth/frown-slant.svg"
+    },
+    {
+      "url": "public/mouth/zigzag.svg"
+    },
+    {
+      "url": "public/mouth/grit.svg"
+    },
+    {
+      "url": "public/mouth/smile-lips.svg"
+    },
+    {
+      "url": "public/mouth/smile-teeth.svg"
+    },
+    {
+      "url": "public/mouth/down-open.svg"
+    },
+    {
+      "url": "public/mouth/frown.svg"
+    },
+    {
+      "url": "public/mouth/gasp.svg"
+    },
+    {
+      "url": "public/mouth/grin.svg"
+    },
+    {
+      "url": "public/mouth/jaw-drop.svg"
+    }
+  ],
+  "nose": [
+    {
+      "url": "public/nose/hand-peak.svg"
+    },
+    {
+      "url": "public/nose/empty.svg"
+    },
+    {
+      "url": "public/nose/heart.svg"
+    },
+    {
+      "url": "public/nose/drool.svg"
+    },
+    {
+      "url": "public/nose/disguise.svg"
+    },
+    {
+      "url": "public/nose/tear.svg"
+    },
+    {
+      "url": "public/nose/clown-nose.svg"
+    }
+  ],
+  "cheek": [
+    {
+      "url": "public/cheek/cheeks.svg"
+    },
+    {
+      "url": "public/cheek/hands-on-cheeks.svg"
+    },
+    {
+      "url": "public/cheek/empty.svg"
+    }
+  ],
+  "hat": [
+    {
+      "url": "public/hat/monocle.svg"
+    },
+    {
+      "url": "public/hat/empty.svg"
+    },
+    {
+      "url": "public/hat/bandage.svg"
+    },
+    {
+      "url": "public/hat/cloud.svg"
+    },
+    {
+      "url": "public/hat/explosion.svg"
+    },
+    {
+      "url": "public/hat/outline.svg"
+    },
+    {
+      "url": "public/hat/cowboy.svg"
+    },
+    {
+      "url": "public/hat/icicles.svg"
+    },
+    {
+      "url": "public/hat/clown-hair.svg"
+    },
+    {
+      "url": "public/hat/sweat.svg"
+    },
+    {
+      "url": "public/hat/horns.svg"
     }
   ]
 }

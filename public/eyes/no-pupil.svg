@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g data-z="2" data-type="eye">
+    <g class="eye left">
+      <ellipse class="cls-5" cx="20.2" cy="23.45" rx="9.88" ry="8.57"
+      transform="translate(-10.66 21.16) rotate(-45)" />
+    </g>
+
+    <g class="eye right">
+      <ellipse class="cls-5" cx="43.8" cy="23.45" rx="8.57" ry="9.88"
+      transform="translate(-3.75 37.84) rotate(-45)" />
+    </g>
+  </g>
+</svg>

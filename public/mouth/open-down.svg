@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 0 64 64">
+  <title>Down Open Mouth</title>
+  <g data-z="4" data-type="mouth">
+    <path class="cls-2"
+      d="M39.49,49.8a6.28,6.28,0,0,0,.23-1.69c0-4.26-3.46-8.25-7.72-8.25s-7.72,4-7.72,8.25A6.26,6.26,0,0,0,24.59,50a15.22,15.22,0,0,1,14.9-.22Z" />
+    <path class="cls-6"
+      d="M32,54c3.64,0,6.67-1.18,7.49-4.17a15.22,15.22,0,0,0-14.9.22C25.5,52.84,28.45,54,32,54Z" />
+  </g>
+</svg>

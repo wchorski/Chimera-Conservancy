@@ -26,13 +26,16 @@ body {
 	z-index: 4;
 }
 
+.c-bottom {
+	fill: var(--c-bottom);
+}
 .c-worry {
 	--c-top: #37b9ff;
 	--c-bottom: #fec92b;
 }
 
 #face-svg {
-  max-width: 20rem;
+	max-width: 20rem;
 }
 
 .face {
@@ -59,6 +62,9 @@ body {
 .cls-3 {
 	fill: #022905;
 }
+.cls-skin {
+	fill: rgb(236, 231, 130);
+}
 /* chin */
 .cls-4 {
 	fill: var(--c-bottom, crimson);
@@ -70,12 +76,150 @@ body {
 	fill: red;
 }
 .cls-skyblue {
-  fill: skyblue;
+	fill: skyblue;
 }
 .cls-red {
-  fill: red
+	fill: red;
+}
+.cls-pink {
+	fill: #ff608a;
+}
+.cls-pink-2 {
+	fill: #c1506e;
+}
+.cls-tounge {
+	fill: red;
+}
+.cls-white {
+	fill: white;
+}
+.cls-tooth {
+	fill: rgb(170, 214, 215);
+}
+.cls-water-2 {
+	fill: #37b9ff;
+}
+.cls-water-1 {
+	fill: #1778ff;
+}
+.cls-horns {
+	fill: var(--c-bottom);
+}
+.cls-ice-2 {
+	fill: #fff;
+}
+.cls-ice {
+	fill: #cef;
+}
+.cls-brown-1,
+.cls-brown-2 {
+	fill: #1a1a1a;
+}
+.cls-brown-1 {
+	opacity: 0;
+}
+.cls-brown-3 {
+	fill: #9c3d29;
+}
+.cls-brown-4 {
+	fill: #fec92b;
+}
+.cls-brown-5 {
+	fill: #fdaf18;
+}
+.cls-brown-6 {
+	fill: #fff;
+}
+.cls-brown-7 {
+	fill: #c62d43;
+}
+.cls-brown-8 {
+	fill: #bb5938;
+}
+.cls-brown-9 {
+	fill: #de9c5a;
+}
+.cls-disguise-1,
+.cls-disguise-2 {
+	fill: #1a1a1a;
+}
+.cls-disguise-1 {
+	opacity: 0;
+}
+.cls-disguise-3 {
+	fill: #fec92b;
+}
+.cls-disguise-4 {
+	fill: #fdaf18;
+}
+.cls-disguise-5 {
+	fill: #9c3d29;
+}
+.cls-disguise-6 {
+	fill: #bb5938;
+}
+.cls-disguise-10,
+.cls-disguise-7 {
+	fill: none;
+	stroke: #476475;
+	stroke-miterlimit: 10;
+	stroke-width: 4px;
+}
+.cls-disguise-7 {
+	stroke-linecap: round;
+}
+.cls-disguise-8 {
+	fill: #fff;
+}
+.cls-disguise-9 {
+	fill: #476475;
+}
+.cls-disguise-11 {
+	fill: #fc9504;
 }
 
+.cls-vomit-1,
+.cls-vomit-2 {
+	fill: #1a1a1a;
+}
+.cls-vomit-1 {
+	opacity: 0;
+}
+.cls-vomit-3 {
+	fill: #fec92b;
+}
+.cls-vomit-4 {
+	fill: #fdaf18;
+}
+.cls-vomit-5 {
+	fill: #39b54a;
+}
+.cls-vomit-6 {
+	fill: #008751;
+}
+.cls-vomit-7 {
+	fill: #fff;
+}
+.cls-vomit-8 {
+	fill: #65d666;
+}
+.cls-monocle-7 {
+	fill: #7b97a6;
+}
+.cls-monocle-8 {
+	opacity: 0.2;
+}
+.cls-monocle-10,
+.cls-monocle-9 {
+	fill: none;
+	stroke: #7b97a6;
+	stroke-linecap: round;
+	stroke-miterlimit: 10;
+	stroke-width: 4px;
+}
+.cls-monocle-10 {
+	stroke-dasharray: 0.85 4.23;
+}
 
 #category-tabs {
 	--br: 10px;
@@ -148,5 +292,5 @@ button:active {
 }
 
 .z-0 {
-  z-index: 0;
+	z-index: 0;
 }

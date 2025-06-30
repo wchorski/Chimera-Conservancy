@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .cls-red{fill:#fff;}
+    </style>
+  </defs>
+  <title>clown nose</title>
+  <g data-z="4" data-type="nose">
+    <circle class="cls-red" cx="32" cy="37.43" r="7.49" />
+  </g>
+</svg>

@@ -11,6 +11,11 @@ const inputEyeTransformX = document.getElementById("eye-transform-x")
 const inputEyeScale = document.getElementById("eye-scale")
 const inputEyeRotate = document.getElementById("eye-transform-rotate")
 
+const inputMouthTransformY = document.getElementById("mouth-transform-y")
+const inputMouthTransformX = document.getElementById("mouth-transform-x")
+const inputMouthScale = document.getElementById("mouth-scale")
+const inputMouthRotate = document.getElementById("mouth-transform-rotate")
+
 function main() {
 	inputColorTop.addEventListener("input", (e) => {
 		document.documentElement.style.setProperty("--c-top", e.target.value)
@@ -66,6 +71,32 @@ function main() {
 	inputEyeRotate.addEventListener("input", (e) => {
 		document.documentElement.style.setProperty(
 			"--eye-rotation",
+			`${(e.target.value * 180)}deg`
+		)
+	})
+
+  //? mouth
+	inputMouthTransformY.addEventListener("input", (e) => {
+		document.documentElement.style.setProperty(
+			"--mouth-y-offset",
+			`${(e.target.value * 28)}px`
+		)
+	})
+	inputMouthTransformX.addEventListener("input", (e) => {
+		document.documentElement.style.setProperty(
+			"--mouth-x-offset",
+			`${(e.target.value * 20)}px`
+		)
+	})
+	inputMouthScale.addEventListener("input", (e) => {
+		document.documentElement.style.setProperty(
+			"--mouth-scale",
+			`${(e.target.value * 1.3)}`
+		)
+	})
+	inputMouthRotate.addEventListener("input", (e) => {
+		document.documentElement.style.setProperty(
+			"--mouth-rotation",
 			`${(e.target.value * 180)}deg`
 		)
 	})

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .cls-brown-1,.cls-brown-2{fill:#1a1a1a;}.cls-brown-1{opacity:0;}.cls-brown-3{fill:#9c3d29;}.cls-brown-4{fill:#fec92b;}.cls-brown-5{fill:#fdaf18;}.cls-brown-6{fill:#fff;}.cls-brown-7{fill:#c62d43;}.cls-brown-8{fill:#bb5938;}.cls-brown-9{fill:#de9c5a;}
+    </style>
+  </defs>
+  <g data-z="-1" data-part="hat" transform="translate(0 -12)">
+    <path class="cls-brown-3"
+      d="M32,22.6A79.08,79.08,0,0,1,4.51,18C5.91,32.76,17.68,44.26,32,44.26S58.06,32.76,59.46,18A79.09,79.09,0,0,1,32,22.6Z" />
+  </g>
+  <g data-z="5" data-part="hat" transform="translate(0 -12)">
+    <path class="cls-brown-8"
+      d="M48.07,14.18c-1.6-3.29-4-7.32-6.7-8-1.64-.43-7,2-8.69,2s-7.11-2.49-8.79-2.07c-2.74.68-5.34,4.83-7,8.17,4.76.39,9.84.62,15.13.62C37.63,14.88,43,14.62,48.07,14.18Z" />
+    <path class="cls-brown-9"
+      d="M50,18.62s-.72-2-1.89-4.44c-5,.44-10.44.7-16.09.7-5.29,0-10.37-.23-15.13-.62-1.21,2.38-2,4.36-2,4.36Z" />
+
+    <ellipse class="cls-brown-5" cx="22.16" cy="22.49" rx="3.78" ry="2.26"
+      transform="translate(-1.88 2.02) rotate(-5)" />
+    <ellipse class="cls-brown-5" cx="42.69" cy="22.49" rx="2.26" ry="3.78"
+      transform="translate(16.56 63.06) rotate(-85)" />
+    <path class="cls-brown-8"
+      d="M32,18a156.79,156.79,0,0,1-25.6-2,1.67,1.67,0,0,0-1.66,2.5C8.28,25,19.14,29.75,32,29.75S55.81,25,59.31,18.45a1.65,1.65,0,0,0-1.72-2.4A156.65,156.65,0,0,1,32,18Z" />
+  </g>
+</svg>

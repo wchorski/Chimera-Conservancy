@@ -3,13 +3,18 @@
 	--brow-x-offset: 0px;
 	--brow-scale: 1;
 	--brow-rotation: 0deg;
-  
-	--eye-y-offset: -10px;
+
+	--eye-y-offset: -1px;
 	--eye-x-offset: 0px;
 	--eye-scale: 1;
 	--eye-rotation: 0deg;
 
-  --anim-speed: 100ms;
+	--mouth-y-offset: 0px;
+	--mouth-x-offset: 0px;
+	--mouth-scale: 1;
+	--mouth-rotation: 0deg;
+
+	--anim-speed: 100ms;
 }
 
 ellipse.brow,
@@ -24,7 +29,7 @@ path.brow.left {
 	/* transform-origin: center left; */
 	transform: translate(var(--brow-x-offset, 0px), var(--brow-y-offset, 0px))
 		scale(var(--brow-scale, 1)) rotate(var(--brow-rotation, 0deg));
-    /* ! causes int transform issues */
+	/* ! causes int transform issues */
 	/* translate: var(--brow-x-offset, 0px) var(--brow-y-offset, 0px); */
 	/* scale: var(--brow-scale, 1); */
 }
@@ -52,7 +57,7 @@ g.eye.left {
 	/* transform-origin: center left; */
 	transform: translate(var(--eye-x-offset, 0px), var(--eye-y-offset, 0px))
 		scale(var(--eye-scale, 1)) rotate(var(--eye-rotation, 0deg));
-    /* ! causes int transform issues */
+	/* ! causes int transform issues */
 	/* translate: var(--brow-x-offset, 0px) var(--brow-y-offset, 0px); */
 	/* scale: var(--brow-scale, 1); */
 }
@@ -61,10 +66,17 @@ g.eye.right {
 	/* transform-origin: center right; */
 	transform: translate(
 			calc(var(--eye-x-offset, 0px) * -1),
-			var(--brow-y-offset, 0px)
+			var(--eye-y-offset, 0px)
 		)
 		scale(var(--eye-scale, 1)) rotate(calc(var(--eye-rotation, 0deg) * -1));
 	/* ! causes init transform issues */
 	/* translate: calc(var(--brow-x-offset, 0px) * -1) var(--brow-y-offset, 0px); */
 	/* scale: var(--brow-scale, 1); */
+}
+
+/* g[data-type="mouth"]  */
+g.mouth {
+	transform-origin: 50% 60%;
+	transform: translate(var(--mouth-x-offset), var(--mouth-y-offset))
+		scale(var(--mouth-scale, 1)) rotate(calc(var(--mouth-rotation, 0deg) * -1));
 }

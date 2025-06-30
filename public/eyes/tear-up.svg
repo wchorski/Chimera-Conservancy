@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g data-z="2" data-type="eye">
+    <g class="eye left">
+      <circle class="cls-white" cx="19.17" cy="29.37" r="9.96" />
+    <circle class="cls-2" cx="20.73"
+        cy="29.37" r="6.81" />
+    <circle class="cls-white" cx="23.73" cy="24.37" r="2.16" />
+    <path
+        class="cls-water-1"
+        d="M27.59,36.25c0,2.32-3.77,5.2-8.42,5.2s-8.42-2.88-8.42-5.2,3.77-1.69,8.42-1.69S27.59,33.93,27.59,36.25Z" />
+      <path class="cls-water-2"
+        d="M24.77,37c0,.91-1.16,1.65-2.6,1.65s-2.6-.74-2.6-1.65,1.17-1.41,2.6-1.41S24.77,36.12,24.77,37Z" />
+    </g>
+
+    <g class="eye right">
+      <circle class="cls-white" cx="44.83" cy="29.37" r="9.96" />
+    <circle class="cls-2" cx="43.27"
+        cy="29.37" r="6.81" />
+    <circle class="cls-white" cx="46.27" cy="24.37" r="2.16" /> --> <path
+        class="cls-water-1"
+        d="M53.25,36.25c0,2.32-3.77,5.2-8.42,5.2s-8.42-2.88-8.42-5.2,3.77-1.69,8.42-1.69S53.25,33.93,53.25,36.25Z" />
+      <path
+        class="cls-water-2"
+        d="M50.43,37c0,.91-1.17,1.65-2.6,1.65s-2.6-.74-2.6-1.65,1.16-1.41,2.6-1.41S50.43,36.12,50.43,37Z" />
+    </g>
+  </g>
+</svg>
