@@ -1,6 +1,12 @@
 {
   "base": [
     {
+      "url": "public/base/melting.svg"
+    },
+    {
+      "url": "public/base/squrcle-chin.svg"
+    },
+    {
       "url": "public/base/squrcle.svg"
     },
     {
@@ -12,10 +18,31 @@
   ],
   "eye": [
     {
-      "url": "public/eyes/strained.svg"
+      "url": "public/eyes/wide-down-right.svg"
+    },
+    {
+      "url": "public/eyes/crying.svg"
+    },
+    {
+      "url": "public/eyes/big-pupils.svg"
+    },
+    {
+      "url": "public/eyes/small-pupil.svg"
+    },
+    {
+      "url": "public/eyes/spirals.svg"
+    },
+    {
+      "url": "public/eyes/rolled-back.svg"
+    },
+    {
+      "url": "public/eyes/half-squint.svg"
     },
     {
       "url": "public/eyes/wide.svg"
+    },
+    {
+      "url": "public/eyes/strained.svg"
     },
     {
       "url": "public/eyes/no-pupil.svg"
@@ -53,6 +80,9 @@
   ],
   "brow": [
     {
+      "url": "public/brows/right-raised.svg"
+    },
+    {
       "url": "public/brows/soft.svg"
     },
     {
@@ -70,7 +100,28 @@
   ],
   "mouth": [
     {
+      "url": "public/mouth/small-o.svg"
+    },
+    {
+      "url": "public/mouth/tongue-poke.svg"
+    },
+    {
+      "url": "public/mouth/frown-long.svg"
+    },
+    {
+      "url": "public/mouth/small-line.svg"
+    },
+    {
+      "url": "public/mouth/tongue-out.svg"
+    },
+    {
+      "url": "public/mouth/thermometer.svg"
+    },
+    {
       "url": "public/mouth/open-smile.svg"
+    },
+    {
+      "url": "public/mouth/explicit.svg"
     },
     {
       "url": "public/mouth/mask.svg"
@@ -135,10 +186,16 @@
   ],
   "nose": [
     {
-      "url": "public/nose/hand-peak.svg"
+      "url": "public/nose/empty.svg"
     },
     {
-      "url": "public/nose/empty.svg"
+      "url": "public/nose/pinocchio.svg"
+    },
+    {
+      "url": "public/nose/exhale-steam.svg"
+    },
+    {
+      "url": "public/nose/hand-peak.svg"
     },
     {
       "url": "public/nose/heart.svg"
@@ -161,6 +218,9 @@
       "url": "public/cheek/cheeks.svg"
     },
     {
+      "url": "public/cheek/two-tears.svg"
+    },
+    {
       "url": "public/cheek/hands-on-cheeks.svg"
     },
     {
@@ -169,10 +229,16 @@
   ],
   "hat": [
     {
-      "url": "public/hat/monocle.svg"
+      "url": "public/hat/empty.svg"
     },
     {
-      "url": "public/hat/empty.svg"
+      "url": "public/hat/hand-palms.svg"
+    },
+    {
+      "url": "public/hat/two-sweat.svg"
+    },
+    {
+      "url": "public/hat/monocle.svg"
     },
     {
       "url": "public/hat/bandage.svg"

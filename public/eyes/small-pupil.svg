@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g data-z="2" data-type="eye">
+    <g class="eye left">
+      <circle class="cls-white" cx="20.5" cy="31.37" r="8.92" />
+      <circle class="cls-2" cx="21.66" cy="31.37" r="3.48" />
+    </g>
+
+    <g class="eye right">
+      <circle class="cls-white" cx="43.5" cy="31.37" r="8.92" />
+      <circle class="cls-2" cx="42.34" cy="31.37" r="3.48" />
+    </g>
+  </g>
+</svg>

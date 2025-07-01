@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g data-z="2" data-type="eye">
+    <g class="eye left">
+      <circle class="cls-5" cx="19.17" cy="29.37" r="9.96" />
+      <circle class="cls-2" cx="20.73" cy="29.37" r="6.81" />
+      <circle class="cls-5" cx="23.73" cy="24.37" r="2.16" />
+    </g>
+
+    <g class="eye right">
+      <circle class="cls-5" cx="44.83" cy="29.37" r="9.96" />
+      <circle class="cls-2" cx="43.27" cy="29.37" r="6.81" />
+      <circle class="cls-5" cx="46.27" cy="24.37" r="2.16" />
+    </g>
+  </g>
+</svg>
