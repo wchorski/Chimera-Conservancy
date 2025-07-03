@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <title>horns</title>
-  <g data-z="5" data-type="hat">
-    <path class="cls-horns"
+  <g data-z="-1" data-type="hat">
+    <path class="cls-skin"
       d="M7.81,21.17C2.27,11.73,5,6.71,6.62,4.84a1,1,0,0,1,1.57,0C11.47,9.12,17,10.16,17,10.16Z" />
-    <path class="cls-horns"
+    <path class="cls-skin"
       d="M56.19,21.17C61.73,11.73,59,6.71,57.38,4.84a1,1,0,0,0-1.57,0C52.53,9.12,47,10.16,47,10.16Z" />
   </g>
 </svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g data-z="2" data-type="eye">
+    <g class="eye left">
+      <circle class="cls-robot-9" cx="20.63" cy="36.06" r="4.74" />
+      <ellipse class="cls-robot-10" cx="21.63" cy="35.06" rx="1.69" ry="2.29"
+        transform="translate(-18.46 25.56) rotate(-45)" />
+    </g>
+
+    <g class="eye right">
+      <circle class="cls-robot-9" cx="43.37" cy="36.06" r="4.74" />
+      <ellipse class="cls-robot-10" cx="44.37" cy="35.06" rx="1.69" ry="2.29"
+        transform="translate(-11.8 41.64) rotate(-45)" />
+    </g>
+  </g>
+</svg>

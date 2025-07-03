@@ -1,13 +1,22 @@
 {
   "base": [
     {
+      "url": "public/base/squrcle.svg"
+    },
+    {
+      "url": "public/base/skull.svg"
+    },
+    {
+      "url": "public/base/robot.svg"
+    },
+    {
+      "url": "public/base/poo.svg"
+    },
+    {
       "url": "public/base/melting.svg"
     },
     {
       "url": "public/base/squrcle-chin.svg"
-    },
-    {
-      "url": "public/base/squrcle.svg"
     },
     {
       "url": "public/base/half.svg"
@@ -17,6 +26,45 @@
     }
   ],
   "eye": [
+    {
+      "url": "public/eyes/wide.svg"
+    },
+    {
+      "url": "public/eyes/zanny.svg"
+    },
+    {
+      "url": "public/eyes/tired.svg"
+    },
+    {
+      "url": "public/eyes/wink-right.svg"
+    },
+    {
+      "url": "public/eyes/right-open.svg"
+    },
+    {
+      "url": "public/eyes/stars.svg"
+    },
+    {
+      "url": "public/eyes/drowzy.svg"
+    },
+    {
+      "url": "public/eyes/sunglasses.svg"
+    },
+    {
+      "url": "public/eyes/hearts.svg"
+    },
+    {
+      "url": "public/eyes/red-beads.svg"
+    },
+    {
+      "url": "public/eyes/down-crescent-even.svg"
+    },
+    {
+      "url": "public/eyes/glasses.svg"
+    },
+    {
+      "url": "public/eyes/dollars.svg"
+    },
     {
       "url": "public/eyes/wide-down-right.svg"
     },
@@ -37,9 +85,6 @@
     },
     {
       "url": "public/eyes/half-squint.svg"
-    },
-    {
-      "url": "public/eyes/wide.svg"
     },
     {
       "url": "public/eyes/strained.svg"
@@ -80,10 +125,16 @@
   ],
   "brow": [
     {
+      "url": "public/brows/soft.svg"
+    },
+    {
+      "url": "public/brows/alternate.svg"
+    },
+    {
       "url": "public/brows/right-raised.svg"
     },
     {
-      "url": "public/brows/soft.svg"
+      "url": "public/brows/empty.svg"
     },
     {
       "url": "public/brows/one-raised.svg"
@@ -99,6 +150,39 @@
     }
   ],
   "mouth": [
+    {
+      "url": "public/mouth/open-smile.svg"
+    },
+    {
+      "url": "public/mouth/zipper.svg"
+    },
+    {
+      "url": "public/mouth/yawn.svg"
+    },
+    {
+      "url": "public/mouth/whoozy.svg"
+    },
+    {
+      "url": "public/mouth/frown-open.svg"
+    },
+    {
+      "url": "public/mouth/smirk.svg"
+    },
+    {
+      "url": "public/mouth/shush.svg"
+    },
+    {
+      "url": "public/mouth/party-horn.svg"
+    },
+    {
+      "url": "public/mouth/one-tooth.svg"
+    },
+    {
+      "url": "public/mouth/chubby.svg"
+    },
+    {
+      "url": "public/mouth/tongue-dollar.svg"
+    },
     {
       "url": "public/mouth/small-o.svg"
     },
@@ -116,9 +200,6 @@
     },
     {
       "url": "public/mouth/thermometer.svg"
-    },
-    {
-      "url": "public/mouth/open-smile.svg"
     },
     {
       "url": "public/mouth/explicit.svg"
@@ -189,6 +270,15 @@
       "url": "public/nose/empty.svg"
     },
     {
+      "url": "public/nose/hand-open.svg"
+    },
+    {
+      "url": "public/nose/hand-point.svg"
+    },
+    {
+      "url": "public/nose/tissue.svg"
+    },
+    {
       "url": "public/nose/pinocchio.svg"
     },
     {
@@ -230,6 +320,21 @@
   "hat": [
     {
       "url": "public/hat/empty.svg"
+    },
+    {
+      "url": "public/hat/hearts.svg"
+    },
+    {
+      "url": "public/hat/halo.svg"
+    },
+    {
+      "url": "public/hat/sleepy-zs.svg"
+    },
+    {
+      "url": "public/hat/salute.svg"
+    },
+    {
+      "url": "public/hat/party.svg"
     },
     {
       "url": "public/hat/hand-palms.svg"

@@ -72,20 +72,32 @@ body {
 .cls-5 {
 	fill: #fff;
 }
+line {
+	stroke-linecap: round;
+	stroke: #476475;
+	stroke-miterlimit: 10;
+	stroke-width: 4px;
+}
 .cls-6 {
 	fill: red;
+}
+.cls-7 {
+	fill: slategrey;
 }
 .cls-skyblue {
 	fill: skyblue;
 }
 .cls-red {
-	fill: red;
+	fill: #e62e49;
 }
 .cls-pink {
 	fill: #ff608a;
 }
 .cls-pink-2 {
 	fill: #c1506e;
+}
+.cls-gold {
+  fill: rgb(237, 234, 159);
 }
 .cls-tounge {
 	fill: red;
@@ -95,6 +107,9 @@ body {
 }
 .cls-tooth {
 	fill: rgb(170, 214, 215);
+}
+.cls-tooth-2 {
+	fill: rgb(126, 151, 152);
 }
 .cls-water-2 {
 	fill: #37b9ff;
@@ -219,6 +234,109 @@ body {
 }
 .cls-monocle-10 {
 	stroke-dasharray: 0.85 4.23;
+}
+.cls-party-1,
+.cls-party-2 {
+	fill: #1a1a1a;
+}
+.cls-party-1 {
+	opacity: 0;
+}
+.cls-party-3 {
+	fill: #fec92b;
+}
+.cls-party-4 {
+	fill: #fdaf18;
+}
+.cls-party-5 {
+	fill: none;
+	stroke: #1778ff;
+	stroke-linecap: round;
+	stroke-miterlimit: 10;
+	stroke-width: 3px;
+}
+.cls-party-6 {
+	fill: #ff608a;
+}
+.cls-party-7 {
+	fill: #a0f;
+}
+.cls-party-8 {
+	fill: #65d666;
+}
+.cls-party-9 {
+	fill: #37b9ff;
+}
+.cls-party-10 {
+	fill: #e62e49;
+}
+.cls-party-11 {
+	fill: #ff366a;
+}
+.cls-robot-1,
+.cls-robot-2 {
+	fill: #1a1a1a;
+}
+.cls-robot-1 {
+	opacity: 0;
+}
+.cls-robot-3 {
+	fill: #7b97a6;
+}
+.cls-robot-4 {
+	fill: #d3dee3;
+}
+.cls-robot-5 {
+	fill: #abc0c9;
+}
+.cls-robot-6 {
+	fill: #1778ff;
+}
+.cls-robot-7 {
+	fill: none;
+	stroke: #fec92b;
+	stroke-linecap: round;
+	stroke-miterlimit: 10;
+	stroke-width: 3px;
+	stroke-dasharray: 4 7;
+}
+.cls-robot-8 {
+	fill: #0049c7;
+}
+.cls-robot-9 {
+	fill: #e62e49;
+}
+.cls-robot-10 {
+	fill: #ffa8a1;
+}
+.cls-shadow {
+	fill: black;
+	opacity: 0.1;
+}
+.cls-sunglasses-1,
+.cls-sunglasses-2 {
+	fill: #1a1a1a;
+}
+.cls-sunglasses-1 {
+	opacity: 0;
+}
+.cls-sunglasses-3 {
+	fill: #fec92b;
+}
+.cls-sunglasses-4 {
+	fill: #fdaf18;
+}
+.cls-sunglasses-5 {
+	fill: #fff;
+}
+.cls-sunglasses-6 {
+	fill: #324652;
+}
+.cls-sunglasses-7 {
+	fill: #476475;
+}
+.cls-sunglasses-8 {
+	fill: #5d7c8c;
 }
 
 #category-tabs {
