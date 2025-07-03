@@ -403,6 +403,7 @@ button:active {
 .avatar-preview {
 	display: flex;
 	justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
 .grid {
@@ -411,4 +412,13 @@ button:active {
 
 .z-0 {
 	z-index: 0;
+}
+
+fieldset {
+  & label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
 }

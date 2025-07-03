@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<h1 class="hidden">Chimera Conservancy</h1>
-		<img src="./face.svg" width="300" />
+		<!-- <img src="./face.svg" width="300" /> -->
 		<section class="avatar-preview">
 			<svg id="face-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 				<title>Face Creator</title>
@@ -30,10 +30,18 @@
 						<stop offset="100%" stop-color="var(--c-bottom, goldenrod)" />
 					</linearGradient>
 				</defs>
-        
 			</svg>
 
 			<aside role="toolbar">
+        <form id="save-form">
+          <fieldset>
+            <label>
+              <span>name</span>
+              <input type="text" placeholder="name..."/>
+            </label>
+            <button type="submit">save</button>
+          </fieldset>
+        </form>
 				<fieldset class="grid" id="color-editor">
 					<label class="grid">
 						<span>top color</span>
@@ -47,7 +55,15 @@
 				<fieldset class="grid" id="brow-editor">
 					<legend>brow editor</legend>
 					<label>
-						<span title="raise">⇡</span>
+						<span title="raise">
+              <img
+								class="icon"
+								alt="icon up"
+								src="icons/up.svg"
+								height="30"
+								width="30"
+							/>
+            </span>
 						<input
 							type="range"
 							min="-1"
@@ -56,10 +72,26 @@
 							value="-0.3"
 							id="brow-transform-y"
 						/>
-						<span title="lower">⇣</span>
+						<span title="lower">
+              <img
+								class="icon"
+								alt="icon down"
+								src="icons/down.svg"
+								height="30"
+								width="30"
+							/>
+            </span>
 					</label>
 					<label>
-						<span title="seperate">●￩￫●</span>
+						<span title="seperate">
+              <img
+								class="icon"
+								alt="icon seperate"
+								src="icons/seperate.svg"
+								height="30"
+								width="30"
+							/>
+            </span>
 						<input
 							type="range"
 							min="-1"
@@ -68,10 +100,26 @@
 							value="0"
 							id="brow-transform-x"
 						/>
-						<span title="merge">￫●●￩</span>
+						<span title="merge">
+              <img
+								class="icon"
+								alt="icon merge"
+								src="icons/merge.svg"
+								height="30"
+								width="30"
+							/>
+            </span>
 					</label>
 					<label>
-						<span title="shrink">◈</span>
+						<span title="shrink">
+              <img
+								class="icon"
+								alt="icon shrink"
+								src="icons/shrink.svg"
+								height="30"
+								width="30"
+							/>
+            </span>
 						<input
 							type="range"
 							min="0.3"
@@ -80,10 +128,26 @@
 							value="0.5"
 							id="brow-scale"
 						/>
-						<span title="grow">⤢</span>
+						<span title="grow">
+              <img
+								class="icon"
+								alt="icon grow"
+								src="icons/grow.svg"
+								height="30"
+								width="30"
+							/>
+            </span>
 					</label>
 					<label>
-						<span title="clockwise">⤾</span>
+						<span title="clockwise">
+              <img
+								class="icon"
+								alt="icon clockwise"
+								src="icons/clockwise.svg"
+								height="30"
+								width="30"
+						/>
+            </span>
 						<input
 							type="range"
 							min="-1"
@@ -92,13 +156,29 @@
 							value="0"
 							id="brow-transform-rotate"
 						/>
-						<span title="counter clockwise">⤿</span>
+						<span title="counter clockwise">
+              <img
+								class="icon"
+								alt="icon counter clockwise"
+								src="icons/counterclockwise.svg"
+								height="30"
+								width="30"
+							/>
+            </span>
 					</label>
 				</fieldset>
 				<fieldset class="grid" id="eye-editor">
 					<legend>eye editor</legend>
 					<label>
-						<span title="raise">⇡</span>
+						<span title="raise">
+              <img
+								class="icon"
+								alt="icon up"
+								src="icons/up.svg"
+								height="30"
+								width="30"
+							/>
+            </span>
 						<input
 							type="range"
 							min="-1"
@@ -107,10 +187,26 @@
 							value="0"
 							id="eye-transform-y"
 						/>
-						<span title="lower">⇣</span>
+						<span title="lower">
+              <img
+								class="icon"
+								alt="icon down"
+								src="icons/down.svg"
+								height="30"
+								width="30"
+							/>
+            </span>
 					</label>
 					<label>
-						<span title="seperate">●￩￫●</span>
+						<span title="seperate">
+              <img
+								class="icon"
+								alt="icon seperate"
+								src="icons/seperate.svg"
+								height="30"
+								width="30"
+							/>
+            </span>
 						<input
 							type="range"
 							min="-1"
@@ -119,10 +215,26 @@
 							value="0"
 							id="eye-transform-x"
 						/>
-						<span title="merge">￫●●￩</span>
+						<span title="merge">
+              <img
+								class="icon"
+								alt="icon merge"
+								src="icons/merge.svg"
+								height="30"
+								width="30"
+							/>
+            </span>
 					</label>
 					<label>
-						<span title="shrink">◈</span>
+						<span title="shrink">
+              <img
+								class="icon"
+								alt="icon shrink"
+								src="icons/shrink.svg"
+								height="30"
+								width="30"
+							/>
+            </span>
 						<input
 							type="range"
 							min="0.3"
@@ -131,10 +243,26 @@
 							value="0.5"
 							id="eye-scale"
 						/>
-						<span title="grow">⤢</span>
+						<span title="grow">
+              <img
+								class="icon"
+								alt="icon grow"
+								src="icons/grow.svg"
+								height="30"
+								width="30"
+							/>
+						</span>
+            </span>
 					</label>
 					<label>
-						<span title="clockwise">⤾</span>
+						<span title="clockwise"
+							><img
+								class="icon"
+								alt="icon clockwise"
+								src="icons/clockwise.svg"
+								height="30"
+								width="30"
+						/></span>
 						<input
 							type="range"
 							min="-1"
@@ -143,13 +271,30 @@
 							value="0"
 							id="eye-transform-rotate"
 						/>
-						<span title="counter clockwise">⤿</span>
+						<span title="counter clockwise">
+							<img
+								class="icon"
+								alt="icon counter clockwise"
+								src="icons/counterclockwise.svg"
+								height="30"
+								width="30"
+							/>
+						</span>
 					</label>
 				</fieldset>
 				<fieldset class="grid" id="mouth-editor">
 					<legend>mouth editor</legend>
 					<label>
-						<span title="raise">⇡</span>
+						<!-- <span title="raise">⇡</span> -->
+						<span title="raise">
+							<img
+								class="icon"
+								alt="icon up"
+								src="icons/up.svg"
+								height="30"
+								width="30"
+							/>
+						</span>
 						<input
 							type="range"
 							min="-1"
@@ -158,10 +303,26 @@
 							value="0"
 							id="mouth-transform-y"
 						/>
-						<span title="lower">⇣</span>
+						<span title="lower">
+							<img
+								class="icon"
+								alt="icon down"
+								src="icons/down.svg"
+								height="30"
+								width="30"
+							/>
+						</span>
 					</label>
 					<label>
-						<span title="seperate">●￩￫●</span>
+						<span title="seperate">
+							<img
+								class="icon"
+								alt="icon seperate"
+								src="icons/seperate.svg"
+								height="30"
+								width="30"
+							/>
+						</span>
 						<input
 							type="range"
 							min="-1"
@@ -170,10 +331,26 @@
 							value="0"
 							id="mouth-transform-x"
 						/>
-						<span title="merge">￫●●￩</span>
+						<span title="merge">
+							<img
+								class="icon"
+								alt="icon merge"
+								src="icons/merge.svg"
+								height="30"
+								width="30"
+							/>
+						</span>
 					</label>
 					<label>
-						<span title="shrink">◈</span>
+						<span title="shrink">
+							<img
+								class="icon"
+								alt="icon shrink"
+								src="icons/shrink.svg"
+								height="30"
+								width="30"
+							/>
+						</span>
 						<input
 							type="range"
 							min="0.3"
@@ -182,10 +359,26 @@
 							value="0.5"
 							id="mouth-scale"
 						/>
-						<span title="grow">⤢</span>
+						<span title="grow">
+							<img
+								class="icon"
+								alt="icon grow"
+								src="icons/grow.svg"
+								height="30"
+								width="30"
+							/>
+						</span>
 					</label>
 					<label>
-						<span title="clockwise">⤾</span>
+						<span title="clockwise">
+							<img
+								class="icon"
+								alt="icon clockwise"
+								src="icons/clockwise.svg"
+								height="30"
+								width="30"
+							/>
+						</span>
 						<input
 							type="range"
 							min="-1"
@@ -194,7 +387,15 @@
 							value="0"
 							id="mouth-transform-rotate"
 						/>
-						<span title="counter clockwise">⤿</span>
+						<span title="counter clockwise">
+							<img
+								class="icon"
+								alt="icon counter clockwise"
+								src="icons/counterclockwise.svg"
+								height="30"
+								width="30"
+							/>
+						</span>
 					</label>
 				</fieldset>
 			</aside>
