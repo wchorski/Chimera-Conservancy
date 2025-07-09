@@ -17,8 +17,7 @@ const {DB_PROTOCOL, DB_USER, DB_PASSWORD, DB_COLLECTION, DB_URL} = ENVS
 
 const syncDom = document.querySelector("#sync-state")
 
-const collection = "emoji"
-const db = new PouchDB(collection)
+const db = new PouchDB(DB_COLLECTION)
 const remoteDB = `${DB_PROTOCOL}://${DB_USER}:${DB_PASSWORD}@${DB_URL}/${DB_COLLECTION}`
 const opts = { live: true, retry: true }
 
@@ -178,15 +177,3 @@ async function fetchCSS(url) {
 	if (!response.ok) throw new Error("Failed to fetch CSS")
 	return await response.text()
 }
-
-// const db = new PouchDB("love")
-// const remoteDB =
-// 	"https://love-all:Deliverer-Amusing-Alias8@chao-db.tawtaw.site/love"
-
-// function sync() {
-// 	syncDom.setAttribute("data-sync-state", "syncing")
-// 	const opts = { live: true, retry: true }
-// 	db.replicate.to(remoteDB, opts, onSyncError)
-// 	db.replicate.from(remoteDB, opts, onSyncError)
-// }
-// sync()onSyncChange
