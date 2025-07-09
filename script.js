@@ -1,7 +1,8 @@
 /**
  * @typedef {import('./Types').PartType} PartType
  */
-
+//TODO wrap await functions in init() file without scope problems
+// async function init() {}
 /**
  * Avatar parts manifest with nested arrays of options
  * @type {Record<PartType, {url: string}[]>}
@@ -25,7 +26,8 @@ const avatarEls = {
 	nose: [],
 	hat: [],
 }
-const faceSVG = document.getElementById("face-svg")
+// const faceSVG = document.getElementById("face-svg")
+window.faceSVG = document.getElementById("face-svg")
 const partTiles = document.getElementById("part-tiles")
 const categoryTabs = document.getElementById("category-tabs")
 let activeTileSet = document.createElement("div")
@@ -35,9 +37,9 @@ function drawAvatar() {
 	const sorted = allElements.sort(
 		(a, b) => (Number(a.dataset.z) || 0) - (Number(b.dataset.z) || 0)
 	)
-	const title = faceSVG.querySelector("title")
-	const defs = faceSVG.querySelector("defs")
-	faceSVG.replaceChildren(title, defs, ...sorted)
+	const title = window.faceSVG.querySelector("title")
+	const defs = window.faceSVG.querySelector("defs")
+	window.faceSVG.replaceChildren(title, defs, ...sorted)
 }
 
 /**
@@ -128,16 +130,15 @@ function createSVGElementWrapper(elements, titleContent) {
 
 /**
  * @param {PartType} type
- * @param {string} i
+ * @param {number} i
  * @returns {void}
  */
 function updatePart(type, i) {
 	// Remove existing element with this class
 	// TODO remove all elements with class of `type` inside svg container
-	const existingElement = document.getElementById(type)
-	if (existingElement) {
-		existingElement.remove()
-	}
+	// const existingElement = document.getElementById(type)
+	const existingEls = window.faceSVG.querySelectorAll(`[data-part="${type}"]`)
+	if (existingEls.length > 0) existingEls.forEach((elem) => elem.remove())
 
 	// const existingElements = document.querySelectorAll(`[data-part="${type}"]`) // or however you identify existing elements
 	// existingElements.forEach(el => el.remove())
@@ -154,7 +155,6 @@ function updatePart(type, i) {
 
 async function main() {
 	try {
-	
 		await Promise.all(
 			Object.entries(manifest).map(async ([type, partOptions], index) => {
 				await Promise.all(
@@ -221,7 +221,7 @@ function loadTileSet(type) {
 	}
 
 	wrapper.replaceChildren(...btns)
-	partTiles.append(wrapper)
+	partTiles?.append(wrapper)
 }
 
 /**

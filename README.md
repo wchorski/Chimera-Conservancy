@@ -13,10 +13,14 @@ A Mii style emoji editor to create player avitars
 5. hat (hair, etc can also have partials that go behind base)
 6. misc
 
+## Setup
+
+
 ## Future
 #todo
 - [ ] set each svg layer with a `data-z` attribute. re-render whole svg on change to correct the stack
 - [ ] preset skin colors with popup sliders
+- [ ] docker compose file to launch couchdb container
 
 ## Credits
 > Vector Ranks Pack by @RhosGFX!

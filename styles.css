@@ -1,10 +1,10 @@
-:root {
+/* :root {
 	--c-top: Khaki;
-	/* --c-middle: rgb(255, 255, 255); */
+	--c-middle: rgb(255, 255, 255);
 	--c-bottom: goldenrod;
-}
+} */
 body {
-	background-color: darkgreen;
+	background-color: rgb(39, 90, 39);
 }
 
 #base {
@@ -32,6 +32,14 @@ body {
 .c-worry {
 	--c-top: #37b9ff;
 	--c-bottom: #fec92b;
+}
+
+#face-container {
+	display: flex;
+	flex-wrap: wrap;
+	& svg {
+		width: 50px;
+	}
 }
 
 #face-svg {
@@ -97,7 +105,7 @@ line {
 	fill: #c1506e;
 }
 .cls-gold {
-  fill: rgb(237, 234, 159);
+	fill: rgb(237, 234, 159);
 }
 .cls-tounge {
 	fill: red;
@@ -372,8 +380,10 @@ line {
 
 .tileset-grid {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	/* grid-template-columns: 1fr 1fr 1fr; */
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
 	gap: 0.2rem;
+	align-content: baseline;
 
 	& > button {
 		height: 5rem;
@@ -396,14 +406,26 @@ button:active {
 	filter: brightness(0.8);
 }
 
+.stack {
+	display: grid;
+	grid-template-areas: "stack";
+
+	& > div {
+		grid-area: stack;
+	}
+}
+
 .hidden {
-	display: none;
+	visibility: hidden;
+}
+.none {
+  display: none;
 }
 
 .avatar-preview {
 	display: flex;
 	justify-content: space-between;
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 .grid {
@@ -415,10 +437,50 @@ button:active {
 }
 
 fieldset {
-  & label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-  }
+	& label {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 10px;
+	}
+}
+
+#sync-state {
+	background-color: rgb(177, 177, 177);
+	border-radius: 30%;
+	width: 20px;
+	display: grid;
+	place-items: center;
+	/* place-content: center; */
+	/* width: 10px; */
+	transition-property: background-color;
+	transition-duration: 400ms;
+
+	&[data-sync-state="connecting"] {
+		background-color: rgb(112, 112, 124);
+	}
+	&[data-sync-state="paused"] {
+		background-color: rgb(171, 210, 168);
+	}
+	&[data-sync-state="syncing"] {
+		background-color: rgb(1, 181, 1);
+	}
+	&[data-sync-state="connected"] {
+		background-color: rgb(136, 141, 226);
+	}
+	&[data-sync-state="error"] {
+		background-color: rgb(196, 63, 63);
+	}
+}
+
+aside[role="toolbar"] {
+	display: flex;
+	flex-wrap: wrap;
+  justify-content: end;
+}
+
+#sync-state {
+	position: absolute;
+	top: 10px;
+	right: 10px;
 }

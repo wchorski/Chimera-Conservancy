@@ -1,7 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <g data-z="0" data-type="base">
-    <circle fill="url(#varGradient)" cx="32" cy="32" r="29" />
-    <path class="cls-4" fill="var(--c-bottom)"
+    <!-- fill="url(#varGradient)"  -->
+    <circle 
+      fill="var(--c-top, #efdd3e)"
+      cx="32" 
+      cy="32" 
+      r="29" 
+    />
+    <!-- class="cls-4"  -->
+    <path 
+      fill="var(--c-bottom, #e2c058)"
       d="M9.001 49.479C16 60 27 61 32 61A27.5 27.5 0 0054.996 49.555C50 54 37 55 32 55 28 55 17 54 9.024 49.479Z" />
   </g>
 </svg>

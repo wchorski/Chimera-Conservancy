@@ -23,6 +23,9 @@
     },
     {
       "url": "public/base/circle.svg"
+    },
+    {
+      "url": "public/base/empty.svg"
     }
   ],
   "eye": [
@@ -134,9 +137,6 @@
       "url": "public/brows/right-raised.svg"
     },
     {
-      "url": "public/brows/empty.svg"
-    },
-    {
       "url": "public/brows/one-raised.svg"
     },
     {
@@ -147,6 +147,9 @@
     },
     {
       "url": "public/brows/suprise.svg"
+    },
+    {
+      "url": "public/brows/empty.svg"
     }
   ],
   "mouth": [
@@ -263,6 +266,9 @@
     },
     {
       "url": "public/mouth/jaw-drop.svg"
+    },
+    {
+      "url": "public/mouth/empty.svg"
     }
   ],
   "nose": [

@@ -1,0 +1,5 @@
+{
+	"devDependencies": {
+		"@types/pouchdb": "^6.4.2"
+	}
+}

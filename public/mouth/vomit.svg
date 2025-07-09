@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   viewBox="0 0 64 64">
-  <g data-z="4" data-type="mouth" class="mouth" transform="rotate(90deg)">
+  <g data-z="4" data-type="mouth" class="mouth">
     <path class="cls-vomit-2"
       d="M42.18,39.73A32.21,32.21,0,0,1,32,41.32a32.21,32.21,0,0,1-10.18-1.59,8.91,8.91,0,0,0-3.54,6.84c0,5.65,6.14,7,13.72,7s13.72-1.35,13.72-7A8.91,8.91,0,0,0,42.18,39.73Z" />
     <path class="cls-vomit-5"

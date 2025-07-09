@@ -17,59 +17,59 @@ const inputMouthScale = document.getElementById("mouth-scale")
 const inputMouthRotate = document.getElementById("mouth-transform-rotate")
 
 function main() {
-	inputColorTop.addEventListener("input", (e) => {
-		document.documentElement.style.setProperty("--c-top", e.target.value)
+	inputColorTop?.addEventListener("input", (e) => {
+		window.faceSVG.style.setProperty("--c-top", e.target?.value)
 	})
-	inputColorBottom.addEventListener("input", (e) => {
-		document.documentElement.style.setProperty("--c-bottom", e.target.value)
+	inputColorBottom?.addEventListener("input", (e) => {
+		window.faceSVG.style.setProperty("--c-bottom", e.target?.value)
 	})
   //? Brows
-	inputBrowTransformY.addEventListener("input", (e) => {
-		document.documentElement.style.setProperty(
+	inputBrowTransformY?.addEventListener("input", (e) => {
+		window.faceSVG.style.setProperty(
 			"--brow-y-offset",
 			`${(e.target.value * 28)}px`
 		)
 	})
-	inputBrowTransformX.addEventListener("input", (e) => {
-		document.documentElement.style.setProperty(
+	inputBrowTransformX?.addEventListener("input", (e) => {
+		window.faceSVG.style.setProperty(
 			"--brow-x-offset",
 			`${(e.target.value * 20)}px`
 		)
 	})
-	inputBrowScale.addEventListener("input", (e) => {
-		document.documentElement.style.setProperty(
+	inputBrowScale?.addEventListener("input", (e) => {
+		window.faceSVG.style.setProperty(
 			"--brow-scale",
 			`${(e.target.value * 1.3)}`
 		)
 	})
-	inputBrowRotate.addEventListener("input", (e) => {
-		document.documentElement.style.setProperty(
+	inputBrowRotate?.addEventListener("input", (e) => {
+		window.faceSVG.style.setProperty(
 			"--brow-rotation",
 			`${(e.target.value * 180)}deg`
 		)
 	})
 
   //? Eyes
-	inputEyeTransformY.addEventListener("input", (e) => {
-		document.documentElement.style.setProperty(
+	inputEyeTransformY?.addEventListener("input", (e) => {
+		window.faceSVG.style.setProperty(
 			"--eye-y-offset",
 			`${(e.target.value * 28)}px`
 		)
 	})
 	inputEyeTransformX.addEventListener("input", (e) => {
-		document.documentElement.style.setProperty(
+		window.faceSVG.style.setProperty(
 			"--eye-x-offset",
 			`${(e.target.value * 20)}px`
 		)
 	})
 	inputEyeScale.addEventListener("input", (e) => {
-		document.documentElement.style.setProperty(
+		window.faceSVG.style.setProperty(
 			"--eye-scale",
 			`${(e.target.value * 1.3)}`
 		)
 	})
 	inputEyeRotate.addEventListener("input", (e) => {
-		document.documentElement.style.setProperty(
+		window.faceSVG.style.setProperty(
 			"--eye-rotation",
 			`${(e.target.value * 180)}deg`
 		)
@@ -77,25 +77,25 @@ function main() {
 
   //? mouth
 	inputMouthTransformY.addEventListener("input", (e) => {
-		document.documentElement.style.setProperty(
+		window.faceSVG.style.setProperty(
 			"--mouth-y-offset",
 			`${(e.target.value * 28)}px`
 		)
 	})
 	inputMouthTransformX.addEventListener("input", (e) => {
-		document.documentElement.style.setProperty(
+		window.faceSVG.style.setProperty(
 			"--mouth-x-offset",
 			`${(e.target.value * 20)}px`
 		)
 	})
 	inputMouthScale.addEventListener("input", (e) => {
-		document.documentElement.style.setProperty(
+		window.faceSVG.style.setProperty(
 			"--mouth-scale",
 			`${(e.target.value * 1.3)}`
 		)
 	})
 	inputMouthRotate.addEventListener("input", (e) => {
-		document.documentElement.style.setProperty(
+		window.faceSVG.style.setProperty(
 			"--mouth-rotation",
 			`${(e.target.value * 180)}deg`
 		)
