@@ -31,6 +31,7 @@ window.faceSVG = document.getElementById("face-svg")
 const partTiles = document.getElementById("part-tiles")
 const categoryTabs = document.getElementById("category-tabs")
 let activeTileSet = document.createElement("div")
+let activeTileButton = document.createElement("button")
 
 function drawAvatar() {
 	const allElements = Object.values(avatarEls).flat()
@@ -202,7 +203,6 @@ function loadTileSet(type) {
 
 	const btns = manifest[type].map((part, i) => {
 		const btn = document.createElement("button")
-		// TODO don't forget event listener
 		btn.addEventListener("click", (e) => updatePart(type, i))
 
 		const elements = manifest[type][i].el
@@ -226,11 +226,17 @@ function loadTileSet(type) {
 
 /**
  * @param {PartType} type
+ * @param {HTMLButtonElement} btn
  */
-function updateTileSet(type) {
+function updateTileSet(type, btn) {
 	activeTileSet.classList.add("hidden")
 	activeTileSet = document.getElementById(`${type}-tiles`)
 	activeTileSet.classList.remove("hidden")
+	// remove any current selected
+	// btn.classList.remove("selected")
+  activeTileButton.classList.remove("selected")
+	btn.classList.add("selected")
+  activeTileButton = btn
 }
 
 function setupUi() {
@@ -239,7 +245,13 @@ function setupUi() {
 	keys.map(async (type, i) => {
 		const btn = document.createElement("button")
 		btn.type = "button"
-		btn.addEventListener("click", (e) => updateTileSet(type))
+		btn.id = `tile-selector-${type}`
+		if (type === "base") {
+      activeTileButton = btn
+			// btn.classList.add("selected")
+			activeTileButton.classList.add("selected")
+		}
+		btn.addEventListener("click", (e) => updateTileSet(type, btn))
 		btn.innerText = type
 		categoryTabs.append(btn)
 	})
