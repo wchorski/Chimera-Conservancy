@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Messages</title>
+		<link rel="stylesheet" href="../styles.css" />
+		<script src="../envs.js" type="module" defer></script>
+		<script src="script.js" type="module" defer></script>
+		<!-- <script src="toolbar.js" type="module" defer></script> -->
+		<script src="../db.js" type="module" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/pouchdb@9.0.0/dist/pouchdb.min.js"></script>
+	</head>
+	<body>
+		<span data-sync-state="connecting" id="sync-state"> ␖ </span>
+		<form id="msgForm" name="msgForm">
+			<fieldset>
+				<label for="message">
+					<span>Message</span>
+					<textarea name="message" id="msg-textarea" required maxlength="200" minlength="12"></textarea>
+				</label>
+        <p class="success" style="display: none;"">Message Created!</p>
+				<button type="submit">submit</button>
+			</fieldset>
+			<fieldset id="shortcode-btn-wrap" class="flex">
+				<legend>shortcodes</legend>
+
+				<button type="button" data-shortcode="[NAME_A] " class="shortcode-btn">
+					NAME_A
+				</button>
+				<button type="button" data-shortcode="[NAME_B] " class="shortcode-btn">
+					NAME_B
+				</button>
+			</fieldset>
+		</form>
+		<hr />
+		<div id="messages-wrap">
+			<!-- imported from db -->
+		</div>
+	</body>
+</html>

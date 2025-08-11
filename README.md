@@ -21,6 +21,10 @@ A Mii style emoji editor to create player avitars
 - [ ] set each svg layer with a `data-z` attribute. re-render whole svg on change to correct the stack
 - [ ] preset skin colors with popup sliders
 - [ ] docker compose file to launch couchdb container
+- [ ] `/` home page that funnels to `/ranch`, `/emoji`, and `/messages` pages
+- [ ] top bar nav on emoji and messages pages
+- [ ] auto randomizing on timer for ranch page
+- [ ] messages page, clear text area on submit
 
 ## Credits
 > Vector Ranks Pack by @RhosGFX!

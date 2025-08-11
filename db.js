@@ -8,17 +8,21 @@ const form = document.forms.namedItem("saveForm")
 /**
  * @typedef {import('./types/Emoji').Emoji} Emoji
  * @typedef {import('./types/Emoji').NewEmoji} NewEmoji
+ * @typedef {import('./types/Messages').Message} Message
+ * @typedef {import('./types/Messages').NewMessage} NewMessage
  * @typedef {import('./types/PouchDBChange').PouchDBChange} PouchDBChange
  */
 //? https://pouchdb.com/getting-started.html
 
 if(!ENVS) throw new Error('check envs.js file')
-const {DB_PROTOCOL, DB_USER, DB_PASSWORD, DB_COLLECTION, DB_URL} = ENVS
+const {DB_PROTOCOL, DB_USER, DB_PASSWORD, DB_COLLECTION, DB_URL, DB_COLLECTION_MESSAGES} = ENVS
 
 const syncDom = document.querySelector("#sync-state")
 
 const db = new PouchDB(DB_COLLECTION)
+const dbMessages = new PouchDB(DB_COLLECTION_MESSAGES)
 const remoteDB = `${DB_PROTOCOL}://${DB_USER}:${DB_PASSWORD}@${DB_URL}/${DB_COLLECTION}`
+const remoteDBMessages = `${DB_PROTOCOL}://${DB_USER}:${DB_PASSWORD}@${DB_URL}/${DB_COLLECTION_MESSAGES}`
 const opts = { live: true, retry: true }
 
 // TODO have client login to play game
@@ -41,6 +45,18 @@ db.replicate
 		// then two-way, continuous, retriable sync
 		syncDom?.setAttribute("data-sync-state", "connected")
 		db.sync(remoteDB, opts)
+			.on("change", onSyncChange)
+			.on("paused", onSyncPaused)
+			.on("error", onSyncError)
+	})
+	.on("error", onSyncError)
+
+dbMessages.replicate
+	.from(remoteDBMessages)
+	.on("complete", function (info) {
+		// then two-way, continuous, retriable sync
+		syncDom?.setAttribute("data-sync-state", "connected")
+		dbMessages.sync(remoteDBMessages, opts)
 			.on("change", onSyncChange)
 			.on("paused", onSyncPaused)
 			.on("error", onSyncError)
@@ -76,16 +92,43 @@ function onSyncError(error) {
 	}
 }
 
-async function getAllDocs() {
+/**
+ * Retrieves all documents from the database
+ * @returns {Promise<Emoji[]|undefined>} Array of document objects
+ */
+export async function getAllDocs() {
 	try {
 		const res = await db.allDocs({ include_docs: true })
 		// console.log(res)
-		res.rows.map((emoji) => renderSVG(emoji.doc.svg))
+    // todo fix root script.js import too
+		// res.rows.map((emoji) => renderSVG(emoji.doc.svg))
+		return res.rows.map(
+      /** @param {{doc: Emoji}} emoji */
+      (emoji) => emoji.doc
+    )
 	} catch (error) {
     console.log('db.js getAllDocs: ', error);
   }
 }
-getAllDocs()
+/**
+ * Retrieves all documents from the database
+ * @returns {Promise<Message[]|undefined>} Array of document objects
+ */
+export async function getAllMessageDocs() {
+	try {
+		const res = await dbMessages.allDocs({ include_docs: true })
+		// console.log(res)
+    // todo fix root script.js import too
+		// res.rows.map((emoji) => renderSVG(emoji.doc.svg))
+		return res.rows.map(
+      /** @param {{doc: Message}} doc */
+      (doc) => doc.doc
+    )
+	} catch (error) {
+    console.log('db.js getAllMessageDocs: ', error);
+  }
+}
+// getAllDocs()
 
 form?.addEventListener("submit", function (e) {
 	e.preventDefault()
@@ -133,6 +176,8 @@ async function createEmoji(name, svg) {
 		svg: svgString,
 	}
 
+  if(!point.date || !point.name || !point.svg) throw new Error("data is not correct model shape")
+
 	try {
 		//? use put if creating a custom id (must be unique)
 		// const res = await db.put(point)
@@ -151,7 +196,39 @@ async function createEmoji(name, svg) {
 
 		console.log(res)
 	} catch (error) {
-		console.log("addLove error: ", error)
+		console.log("createEmoji error: ", error)
+	}
+}
+
+/**
+ *  @param {string} message
+ */
+export async function createMessage(message) {
+
+  // POST to db
+	/** @type {NewMessage} */
+	const point = {
+		message,
+	}
+
+  if(!point.message) throw new Error("data is not correct model shape")
+
+	try {
+		const res = await dbMessages.post(point)
+
+		if (res.ok) {
+			// console.log("pouchdb ok: ", res.ok)
+			const newPoint = {
+				...point,
+				_id: res.id,
+				_rev: res.rev,
+			}
+			return newPoint
+		}
+
+		console.log(res)
+	} catch (error) {
+		console.log("createMessage error: ", error)
 	}
 }
 

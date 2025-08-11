@@ -1,6 +1,9 @@
 /**
  * @typedef {import('./Types').PartType} PartType
  */
+
+import { getAllDocs } from "./db.js"
+
 //TODO wrap await functions in init() file without scope problems
 // async function init() {}
 /**
@@ -154,6 +157,18 @@ function updatePart(type, i) {
 	drawAvatar()
 }
 
+/** @param {string} svg  */
+function renderSVG(svg) {
+	const parser = new DOMParser()
+	const doc = parser.parseFromString(svg, "image/svg+xml")
+	const svgElement = doc.documentElement
+
+	if (svgElement.tagName === "svg") {
+		// Insert into DOM safely
+		document.getElementById("face-container")?.appendChild(svgElement)
+	}
+}
+
 async function main() {
 	try {
 		await Promise.all(
@@ -189,6 +204,10 @@ async function main() {
 	} catch (error) {
 		console.error("Failed to load avatar parts:", error)
 	}
+
+	const docs = await getAllDocs()
+	if (!docs) throw new Error("emoji docs not found")
+	docs?.map((doc) => renderSVG(doc.svg))
 
 	setupUi()
 }
@@ -234,9 +253,9 @@ function updateTileSet(type, btn) {
 	activeTileSet.classList.remove("hidden")
 	// remove any current selected
 	// btn.classList.remove("selected")
-  activeTileButton.classList.remove("selected")
+	activeTileButton.classList.remove("selected")
 	btn.classList.add("selected")
-  activeTileButton = btn
+	activeTileButton = btn
 }
 
 function setupUi() {
@@ -247,7 +266,7 @@ function setupUi() {
 		btn.type = "button"
 		btn.id = `tile-selector-${type}`
 		if (type === "base") {
-      activeTileButton = btn
+			activeTileButton = btn
 			// btn.classList.add("selected")
 			activeTileButton.classList.add("selected")
 		}
