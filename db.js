@@ -1,25 +1,32 @@
-// console.log("db connected")
-import { ENVS } from './envs.js';
-/**@type {HTMLFormElement|null} */
-const form = document.forms.namedItem("saveForm")
-
-// const faceSVG = document.getElementById("face-svg")
-
 /**
  * @typedef {import('./types/Emoji').Emoji} Emoji
+ * @typedef {import('./types/RemoveObject').RemoveObject} RemoveObject
  * @typedef {import('./types/Emoji').NewEmoji} NewEmoji
  * @typedef {import('./types/Messages').Message} Message
  * @typedef {import('./types/Messages').NewMessage} NewMessage
  * @typedef {import('./types/PouchDBChange').PouchDBChange} PouchDBChange
  */
+// console.log("db connected")
+import { ENVS } from "./envs.js"
+/**@type {HTMLFormElement|null} */
+const form = document.forms.namedItem("saveForm")
+
+// const faceSVG = document.getElementById("face-svg")
 //? https://pouchdb.com/getting-started.html
 
-if(!ENVS) throw new Error('check envs.js file')
-const {DB_PROTOCOL, DB_USER, DB_PASSWORD, DB_COLLECTION, DB_URL, DB_COLLECTION_MESSAGES} = ENVS
+if (!ENVS) throw new Error("check envs.js file")
+const {
+	DB_PROTOCOL,
+	DB_USER,
+	DB_PASSWORD,
+	DB_COLLECTION,
+	DB_URL,
+	DB_COLLECTION_MESSAGES,
+} = ENVS
 
 const syncDom = document.querySelector("#sync-state")
 
-const db = new PouchDB(DB_COLLECTION)
+const dbEmoji = new PouchDB(DB_COLLECTION)
 const dbMessages = new PouchDB(DB_COLLECTION_MESSAGES)
 const remoteDB = `${DB_PROTOCOL}://${DB_USER}:${DB_PASSWORD}@${DB_URL}/${DB_COLLECTION}`
 const remoteDBMessages = `${DB_PROTOCOL}://${DB_USER}:${DB_PASSWORD}@${DB_URL}/${DB_COLLECTION_MESSAGES}`
@@ -39,12 +46,13 @@ const opts = { live: true, retry: true }
 
 //? https://pouchdb.com/api.html#sync
 // do one way, one-off sync from the server until completion
-db.replicate
+dbEmoji.replicate
 	.from(remoteDB)
 	.on("complete", function (info) {
 		// then two-way, continuous, retriable sync
 		syncDom?.setAttribute("data-sync-state", "connected")
-		db.sync(remoteDB, opts)
+		dbEmoji
+			.sync(remoteDB, opts)
 			.on("change", onSyncChange)
 			.on("paused", onSyncPaused)
 			.on("error", onSyncError)
@@ -56,12 +64,26 @@ dbMessages.replicate
 	.on("complete", function (info) {
 		// then two-way, continuous, retriable sync
 		syncDom?.setAttribute("data-sync-state", "connected")
-		dbMessages.sync(remoteDBMessages, opts)
+		dbMessages
+			.sync(remoteDBMessages, opts)
 			.on("change", onSyncChange)
 			.on("paused", onSyncPaused)
 			.on("error", onSyncError)
 	})
 	.on("error", onSyncError)
+
+dbMessages
+	.changes({
+		since: "now",
+		live: true,
+		include_docs: true,
+	})
+	.on("change", (change) => {
+		console.log("dbMessages.changes change: ", change)
+	})
+	.on("complete", (complete) => {
+		console.log("dbMessages.changes complete: ", complete)
+	})
 
 /**@param {PouchDBChange} data */
 function onSyncChange(data) {
@@ -98,17 +120,17 @@ function onSyncError(error) {
  */
 export async function getAllDocs() {
 	try {
-		const res = await db.allDocs({ include_docs: true })
+		const res = await dbEmoji.allDocs({ include_docs: true })
 		// console.log(res)
-    // todo fix root script.js import too
+		// todo fix root script.js import too
 		// res.rows.map((emoji) => renderSVG(emoji.doc.svg))
 		return res.rows.map(
-      /** @param {{doc: Emoji}} emoji */
-      (emoji) => emoji.doc
-    )
+			/** @param {{doc: Emoji}} emoji */
+			(emoji) => emoji.doc
+		)
 	} catch (error) {
-    console.log('db.js getAllDocs: ', error);
-  }
+		console.log("dbEmoji.js getAllDocs: ", error)
+	}
 }
 /**
  * Retrieves all documents from the database
@@ -118,15 +140,15 @@ export async function getAllMessageDocs() {
 	try {
 		const res = await dbMessages.allDocs({ include_docs: true })
 		// console.log(res)
-    // todo fix root script.js import too
+		// todo fix root script.js import too
 		// res.rows.map((emoji) => renderSVG(emoji.doc.svg))
 		return res.rows.map(
-      /** @param {{doc: Message}} doc */
-      (doc) => doc.doc
-    )
+			/** @param {{doc: Message}} doc */
+			(doc) => doc.doc
+		)
 	} catch (error) {
-    console.log('db.js getAllMessageDocs: ', error);
-  }
+		console.log("db.js getAllMessageDocs: ", error)
+	}
 }
 // getAllDocs()
 
@@ -136,6 +158,7 @@ form?.addEventListener("submit", function (e) {
 	const formData = new FormData(this)
 	/** @type {string|null} */
 	const name = formData.get("name")
+	if (!name) throw new Error("name field empty")
 	// const svg = formData.get('svg');
 	// console.log(window.faceSVG);
 	const clonedSVG = document.getElementById("face-svg")?.cloneNode(true)
@@ -166,7 +189,7 @@ async function createEmoji(name, svg) {
 	defs.appendChild(style)
 	const svgString = new XMLSerializer().serializeToString(svg)
 
-  // POST to db
+	// POST to db
 	/** @type {NewEmoji} */
 	const point = {
 		//? if using put instead of post set _id
@@ -176,12 +199,13 @@ async function createEmoji(name, svg) {
 		svg: svgString,
 	}
 
-  if(!point.date || !point.name || !point.svg) throw new Error("data is not correct model shape")
+	if (!point.date || !point.name || !point.svg)
+		throw new Error("data is not correct model shape")
 
 	try {
 		//? use put if creating a custom id (must be unique)
 		// const res = await db.put(point)
-		const res = await db.post(point)
+		const res = await dbEmoji.post(point)
 
 		if (res.ok) {
 			// console.log("pouchdb ok: ", res.ok)
@@ -190,7 +214,7 @@ async function createEmoji(name, svg) {
 				_id: res.id,
 				_rev: res.rev,
 			}
-      renderSVG(svgString)
+			renderSVG(svgString)
 			return newPoint
 		}
 
@@ -204,14 +228,13 @@ async function createEmoji(name, svg) {
  *  @param {string} message
  */
 export async function createMessage(message) {
-
-  // POST to db
+	// POST to db
 	/** @type {NewMessage} */
 	const point = {
 		message,
 	}
 
-  if(!point.message) throw new Error("data is not correct model shape")
+	if (!point.message) throw new Error("data is not correct model shape")
 
 	try {
 		const res = await dbMessages.post(point)
@@ -253,4 +276,16 @@ async function fetchCSS(url) {
 	const response = await fetch(url)
 	if (!response.ok) throw new Error("Failed to fetch CSS")
 	return await response.text()
+}
+
+/**
+ * @param {RemoveObject} doc
+ */
+export async function deleteMessage(doc) {
+	try {
+		const res = await dbMessages.remove(doc)
+    if(!res.ok) throw new Error('deleteMessage res is not OK')
+	} catch (error) {
+		throw new Error("deleteMessage: ", error)
+	}
 }

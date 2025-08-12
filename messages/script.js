@@ -1,4 +1,7 @@
-import { getAllMessageDocs, createMessage } from "../db.js"
+/**
+ * @typedef {import('../types/Messages').Message} Message
+ */
+import { getAllMessageDocs, createMessage, deleteMessage } from "../db.js"
 const msgWrap = document.getElementById("messages-wrap")
 const shortCodeBtnWrap = document.getElementById("shortcode-btn-wrap")
 /**@type {HTMLTextAreaElement|null} */
@@ -18,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	})
 
-	form?.addEventListener("submit", function (e) {
+	form?.addEventListener("submit", async function (e) {
 		e.preventDefault()
 
 		const formData = new FormData(this)
@@ -26,25 +29,30 @@ document.addEventListener("DOMContentLoaded", function () {
 		const message = formData.get("message")
 		if (!message || message === "") throw new Error("no message in input field")
 
-		// Your logic here
-		// console.log("Form submitted:", name)
-		createMessage(message)
-		const p = renderMsg(message)
-		msgCardLastAdded.classList.remove("new")
-		p.classList.add("msg-card", "anim-fade-in", "new")
-		msgCardLastAdded = p
-		msgWrap?.prepend(p)
+		try {
+			// Your logic here
+			// console.log("Form submitted:", name)
+			const res = await createMessage(message)
+			if (!res) throw new Error("submit res undefined")
+			const p = renderMsg(res)
+			msgCardLastAdded.classList.remove("new")
+			p.classList.add("msg-card", "anim-fade-in", "new")
+			msgCardLastAdded = p
+			msgWrap?.prepend(p)
 
-		form.reset()
+			form.reset()
 
-		const successMessage = form.querySelector(".success")
-		if (successMessage) {
-			successMessage.style.display = "block"
+			const successMessage = form.querySelector(".success")
+			if (successMessage) {
+				successMessage.style.display = "block"
 
-			// Optional: Hide success message after 3 seconds
-			setTimeout(() => {
-				successMessage.style.display = "none"
-			}, 3000)
+				// Optional: Hide success message after 3 seconds
+				setTimeout(() => {
+					successMessage.style.display = "none"
+				}, 3000)
+			}
+		} catch (error) {
+			console.log("submit message: ", error)
 		}
 	})
 })
@@ -73,10 +81,10 @@ function insertShortcode(shortcode) {
 }
 
 /**
- *
- * @param {string} msg
+ * @param {Message} doc
  */
-function renderMsg(msg) {
+function renderMsg(doc) {
+	const { message, _id } = doc
 	/** @type {Record<string, string>} */
 	const nameMap = {
 		"[NAME_A]": "Alice",
@@ -96,10 +104,10 @@ function renderMsg(msg) {
 	let lastIndex = 0
 	let match
 
-	while ((match = placeholderPattern.exec(msg)) !== null) {
+	while ((match = placeholderPattern.exec(message)) !== null) {
 		// Append text before the match
 		if (match.index > lastIndex) {
-			p.append(document.createTextNode(msg.slice(lastIndex, match.index)))
+			p.append(document.createTextNode(message.slice(lastIndex, match.index)))
 		}
 
 		// Append the replacement name in <strong>
@@ -111,10 +119,35 @@ function renderMsg(msg) {
 	}
 
 	// Append any trailing text
-	if (lastIndex < msg.length) {
-		p.append(document.createTextNode(msg.slice(lastIndex)))
+	if (lastIndex < message.length) {
+		p.append(document.createTextNode(message.slice(lastIndex)))
 	}
+
+	// add delete button
+	const deleteBtn = document.createElement("button")
+	deleteBtn.textContent = "x"
+	deleteBtn.title = "delete"
+	deleteBtn.classList.add("delete")
+	deleteBtn.addEventListener("pointerup", () => {
+		deleteMsg(doc)
+	})
+	p.append(deleteBtn)
+
+	p.id = _id
+
 	return p
+}
+
+/**
+ * @param {import("types/RemoveObject").RemoveObject} doc
+ */
+async function deleteMsg(doc) {
+	try {
+		await deleteMessage(doc)
+		// remove from local db
+	} catch (error) {
+		throw new Error("deleteMsg: ", error)
+	}
 }
 
 async function main() {
@@ -128,7 +161,7 @@ async function main() {
 	}
 
 	messages.map((doc) => {
-		const p = renderMsg(doc.message)
+		const p = renderMsg(doc)
 		p.classList.add("msg-card", "anim-fade-in")
 		msgWrap?.prepend(p)
 	})
