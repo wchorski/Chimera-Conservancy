@@ -58,7 +58,7 @@ async function fetchSVGPartialText(url) {
 		const svgText = await response.text()
 		return svgText
 	} catch (error) {
-		throw new Error(error)
+    throw new Error("fetchSVGPartialText failed", { cause: error })
 	}
 }
 

@@ -1,54 +1,69 @@
 /**
  * @typedef {import('../types/Messages').Message} Message
  */
-import { getAllMessageDocs, createMessage, deleteMessage } from "../db.js"
+import {
+	getAllMessageDocs,
+	createMessage,
+	deleteMessage,
+	messagesMap,
+} from "../db.js"
 const msgWrap = document.getElementById("messages-wrap")
 const shortCodeBtnWrap = document.getElementById("shortcode-btn-wrap")
-/**@type {HTMLTextAreaElement|null} */
-const msgTextarea = document.getElementById("msg-textarea")
+const msgTextareaEl = document.getElementById("msg-textarea")
+const msgTextarea =
+	msgTextareaEl instanceof HTMLTextAreaElement ? msgTextareaEl : null
 const form = document.forms.namedItem("msgForm")
 let msgCardLastAdded = document.createElement("p")
 
 document.addEventListener("DOMContentLoaded", function () {
 	// Add event listeners to all shortcode buttons using event delegation
 
-	shortCodeBtnWrap?.addEventListener("click", function (e) {
-		if (e.target?.classList.contains("shortcode-btn")) {
-			const shortcode = e.target.getAttribute("data-shortcode")
+	shortCodeBtnWrap?.addEventListener("click", (e) => {
+		const target = e.target
+
+		if (
+			target instanceof HTMLElement &&
+			target.classList.contains("shortcode-btn")
+		) {
+			const shortcode = target.getAttribute("data-shortcode")
 			if (shortcode) {
 				insertShortcode(shortcode)
 			}
 		}
 	})
 
-	form?.addEventListener("submit", async function (e) {
+	form?.addEventListener("submit", async (e) => {
 		e.preventDefault()
 
-		const formData = new FormData(this)
-		/** @type {string|null} */
-		const message = formData.get("message")
+		//@ts-ignore
+		const data = Object.fromEntries(new FormData(e.target))
+		const { message } = data
 		if (!message || message === "") throw new Error("no message in input field")
 
 		try {
 			// Your logic here
 			// console.log("Form submitted:", name)
-			const res = await createMessage(message)
-			if (!res) throw new Error("submit res undefined")
-			const p = renderMsg(res)
-			msgCardLastAdded.classList.remove("new")
-			p.classList.add("msg-card", "anim-fade-in", "new")
-			msgCardLastAdded = p
-			msgWrap?.prepend(p)
+			const doc = await createMessage(message)
+			if (!doc) throw new Error("no message doc returned")
+			//? handled by ui.js
+			// TODO figure out why
+			// const p = buildMsgEl(doc)
+			// msgCardLastAdded.classList.remove("new")
+			// p.classList.add("msg-card", "anim-fade-in", "new")
+			// msgCardLastAdded = p
+			// msgWrap?.prepend(p)
 
 			form.reset()
 
-			const successMessage = form.querySelector(".success")
-			if (successMessage) {
-				successMessage.style.display = "block"
+			const successEl = form.querySelector(".success")
+			if (!(successEl instanceof HTMLElement))
+				throw new Error("not HTML element")
+			if (successEl) {
+				successEl.style.visibility = "visible"
 
 				// Optional: Hide success message after 3 seconds
 				setTimeout(() => {
-					successMessage.style.display = "none"
+					successEl.style.visibility = "hidden"
 				}, 3000)
 			}
 		} catch (error) {
@@ -80,91 +95,28 @@ function insertShortcode(shortcode) {
 	textarea.focus()
 }
 
-/**
- * @param {Message} doc
- */
-function renderMsg(doc) {
-	const { message, _id } = doc
-	/** @type {Record<string, string>} */
-	const nameMap = {
-		"[NAME_A]": "Alice",
-		"[NAME_B]": "Bob",
-		"[NAME_C]": "Charlie",
-	}
-	const p = document.createElement("p")
+// async function main() {
+// 	// const messages = await getAllMessageDocs()
+// 	const messages = [...messagesMap.values()]
+// 	if (!messages) throw new Error("no messages found")
+// 	if (!msgWrap) throw new Error("msgWrap not found on dom")
 
-	// Build a regex from all the placeholders in the map
-	const placeholderPattern = new RegExp(
-		Object.keys(nameMap)
-			.map((ph) => ph.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")) // escape regex chars
-			.join("|"),
-		"g"
-	)
+// 	// TODO add allMessages map from db.js
+// 	// console.log(allMessagesMap);
+// 	if (messages.length === 0) {
+// 		const p = document.createElement("p")
+// 		p.textContent = "No messages found, create new one"
+// 		msgWrap.prepend(p)
+// 	} else {
 
-	let lastIndex = 0
-	let match
+//     messages.map((doc, i) => {
+//       const p = buildMsgEl(doc)
+//       p.classList.add("msg-card", "anim-fade-in")
+//       p.style.animationDelay = (i * 80).toString() + "ms"
+//       msgWrap?.append(p)
+//     })
+//   }
 
-	while ((match = placeholderPattern.exec(message)) !== null) {
-		// Append text before the match
-		if (match.index > lastIndex) {
-			p.append(document.createTextNode(message.slice(lastIndex, match.index)))
-		}
+// }
 
-		// Append the replacement name in <strong>
-		const strong = document.createElement("strong")
-		strong.textContent = nameMap[match[0]]
-		p.append(strong)
-
-		lastIndex = placeholderPattern.lastIndex
-	}
-
-	// Append any trailing text
-	if (lastIndex < message.length) {
-		p.append(document.createTextNode(message.slice(lastIndex)))
-	}
-
-	// add delete button
-	const deleteBtn = document.createElement("button")
-	deleteBtn.textContent = "x"
-	deleteBtn.title = "delete"
-	deleteBtn.classList.add("delete")
-	deleteBtn.addEventListener("pointerup", () => {
-		deleteMsg(doc)
-	})
-	p.append(deleteBtn)
-
-	p.id = _id
-
-	return p
-}
-
-/**
- * @param {import("types/RemoveObject").RemoveObject} doc
- */
-async function deleteMsg(doc) {
-	try {
-		await deleteMessage(doc)
-		// remove from local db
-	} catch (error) {
-		throw new Error("deleteMsg: ", error)
-	}
-}
-
-async function main() {
-	const messages = await getAllMessageDocs()
-	if (!messages) throw new Error("no messages found")
-	if (!msgWrap) throw new Error("msgWrap not found on dom")
-	if (messages.length === 0) {
-		const p = document.createElement("p")
-		p.textContent = "No messages found, create new one"
-		msgWrap.prepend(p)
-	}
-
-	messages.map((doc) => {
-		const p = renderMsg(doc)
-		p.classList.add("msg-card", "anim-fade-in")
-		msgWrap?.prepend(p)
-	})
-}
-
-main()
+// main()

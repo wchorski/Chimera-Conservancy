@@ -26,6 +26,7 @@ A Mii style emoji editor to create player avitars
 - [ ] auto randomizing on timer for ranch page
 - [ ] messages page, clear text area on submit
 - [ ] message cards link db id and make delete button (with confirm)
+- [ ] fix: not all brows react to sliders
 
 ## Credits
 > Vector Ranks Pack by @RhosGFX!
