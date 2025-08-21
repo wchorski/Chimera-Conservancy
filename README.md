@@ -27,6 +27,7 @@ A Mii style emoji editor to create player avitars
 - [ ] messages page, clear text area on submit
 - [ ] message cards link db id and make delete button (with confirm)
 - [ ] fix: not all brows react to sliders
+- [x] each emoji's `<title>` tag should have its name
 
 ## Credits
 > Vector Ranks Pack by @RhosGFX!

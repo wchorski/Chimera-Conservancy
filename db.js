@@ -10,7 +10,7 @@
 import { ENVS } from "./envs.js"
 import { events } from "./events.js"
 /**@type {HTMLFormElement|null} */
-const form = document.forms.namedItem("saveForm")
+const emojiForm = document.forms.namedItem("saveForm")
 
 // const faceSVG = document.getElementById("face-svg")
 //? https://pouchdb.com/getting-started.html
@@ -35,6 +35,7 @@ const opts = { live: true, retry: true }
 // /** @type {Message[]} */
 // export let allMessages = []
 export const messagesMap = new Map()
+export const emojisMap = new Map()
 
 // TODO have client login to play game
 // // Client logs in with username/password
@@ -100,18 +101,48 @@ dbMessages
 		const { id, deleted, doc } = change
 
 		if (deleted) {
-      messagesMap.delete(id)
+			messagesMap.delete(id)
 			events.dispatchEvent(
 				new CustomEvent("messages:delete", { detail: change.id })
 			)
 		} else {
-      messagesMap.set(id, doc)
-      events.dispatchEvent(new CustomEvent("messages:set", { detail: change.doc }))
+			messagesMap.set(id, doc)
+			events.dispatchEvent(
+				new CustomEvent("messages:set", { detail: change.doc })
+			)
 		}
-		
-    // react to both delete and update
-    events.dispatchEvent(new CustomEvent("messages:change", { detail: messagesMap }))
-		
+
+		// react to both delete and update
+		events.dispatchEvent(
+			new CustomEvent("messages:change", { detail: messagesMap })
+		)
+	})
+
+dbEmoji
+	.changes({
+		since: "now",
+		live: true,
+		include_docs: true,
+	})
+	.on("change", (change) => {
+		const { id, deleted, doc } = change
+
+		if (deleted) {
+			emojisMap.delete(id)
+			events.dispatchEvent(
+				new CustomEvent("emojis:delete", { detail: change.id })
+			)
+		} else {
+			emojisMap.set(id, doc)
+			events.dispatchEvent(
+				new CustomEvent("emojis:set", { detail: change.doc })
+			)
+		}
+
+		// react to both delete and update
+		events.dispatchEvent(
+			new CustomEvent("emojis:change", { detail: emojisMap })
+		)
 	})
 
 // /**@param {PouchDBChange} data */
@@ -138,16 +169,17 @@ function onSyncError(error) {
  * Retrieves all documents from the database
  * @returns {Promise<Emoji[]|undefined>} Array of document objects
  */
-export async function getAllDocs() {
+export async function getAllEmojiDocs() {
 	try {
 		const res = await dbEmoji.allDocs({ include_docs: true })
-		// console.log(res)
-		// todo fix root script.js import too
-		// res.rows.map((emoji) => renderSVG(emoji.doc.svg))
+
+    res.rows.forEach((row) => {
+			emojisMap.set(row.id, row.doc)
+		})
 
 		return res.rows.map((row) => row.doc)
 	} catch (error) {
-		console.log("dbEmoji.js getAllDocs: ", error)
+		console.log("dbEmoji.js getAllEmojiDocs: ", error)
 	}
 }
 /**
@@ -157,25 +189,11 @@ export async function getAllDocs() {
 export async function getAllMessageDocs() {
 	try {
 		const res = await dbMessages.allDocs({ include_docs: true })
-		// console.log(res)
-		// todo fix root script.js import too
-		// res.rows.map((emoji) => renderSVG(emoji.doc.svg))
+
 		res.rows.forEach((row) => {
 			messagesMap.set(row.id, row.doc)
 		})
 
-    // console.log(res.rows.map((row) => row.doc));
-
-		// // Loop keys & values
-		// for (const [key, value] of allMessagesMap) console.log(key, value)
-		// // Only keys
-		// for (const key of allMessagesMap.keys()) console.log(key)
-		// // Only values
-		// for (const value of allMessagesMap.values()) console.log(value)
-		// Only entries
-		// for (const entry of allMessagesMap.entries()) console.log(entry)
-
-    // [...messagesMap.values()]
 		return res.rows.map((row) => row.doc)
 	} catch (error) {
 		console.log("db.js getAllMessageDocs: ", error)
@@ -184,7 +202,7 @@ export async function getAllMessageDocs() {
 // getAllDocs()
 
 //? Emoji form submit
-form?.addEventListener("submit", async (e) => {
+emojiForm?.addEventListener("submit", async (e) => {
 	e.preventDefault()
 
 	//@ts-ignore
@@ -214,8 +232,8 @@ form?.addEventListener("submit", async (e) => {
 			_id: res.id,
 			_rev: res.rev,
 		}
-		renderSVG(point.svg)
-		form.reset()
+		// renderSVG(point.svg)
+		emojiForm.reset()
 		return newPoint
 
 		// console.log(res)
@@ -288,17 +306,17 @@ export async function createMessage(message) {
 	}
 }
 
-/** @param {string} svg  */
-function renderSVG(svg) {
-	const parser = new DOMParser()
-	const doc = parser.parseFromString(svg, "image/svg+xml")
-	const svgElement = doc.documentElement
+// /** @param {string} svg  */
+// function renderSVG(svg) {
+// 	const parser = new DOMParser()
+// 	const doc = parser.parseFromString(svg, "image/svg+xml")
+// 	const svgElement = doc.documentElement
 
-	if (svgElement.tagName === "svg") {
-		// Insert into DOM safely
-		document.getElementById("face-container")?.appendChild(svgElement)
-	}
-}
+// 	if (svgElement.tagName === "svg") {
+// 		// Insert into DOM safely
+// 		document.getElementById("emojis-wrap")?.appendChild(svgElement)
+// 	}
+// }
 
 /**
  *
@@ -320,5 +338,17 @@ export async function deleteMessage(doc) {
 		if (!res.ok) throw new Error("deleteMessage res is not OK")
 	} catch (error) {
 		throw new Error("deleteMessage failed", { cause: error })
+	}
+}
+/**
+ * @param {RemoveObject} doc
+ */
+export async function deleteEmoji(doc) {
+  
+	try {
+		const res = await dbEmoji.remove(doc)
+		if (!res.ok) throw new Error("dbEmoji res is not OK")
+	} catch (error) {
+		throw new Error("dbEmoji failed", { cause: error })
 	}
 }

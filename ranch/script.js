@@ -3,7 +3,7 @@
  * @typedef {import('../types/Messages')} Message
  */
 
-import { getAllDocs, getAllMessageDocs } from "../db.js"
+import { getAllEmojiDocs, getAllMessageDocs } from "../db.js"
 const emojiAEl = document.getElementById("emojiA")
 const emojiBEl = document.getElementById("emojiB")
 const messageWrap = document.getElementById("messageWrap")
@@ -17,7 +17,7 @@ function renderSVG(svg) {
 
 	if (svgElement.tagName === "svg") {
 		// Insert into DOM safely
-		document.getElementById("face-container")?.appendChild(svgElement)
+		document.getElementById("emojis-wrap")?.appendChild(svgElement)
 	}
 }
 
@@ -135,7 +135,7 @@ async function ranch() {
 	const messages = await getAllMessageDocs()
 	if (!messages) throw new Error("no messages found")
 
-	const docs = await getAllDocs()
+	const docs = await getAllEmojiDocs()
 	if (!docs) throw new Error("emoji docs not found")
 	docs?.map((doc) => renderSVG(doc.svg))
 

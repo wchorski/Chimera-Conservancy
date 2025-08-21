@@ -16,7 +16,16 @@ const inputMouthTransformX = document.getElementById("mouth-transform-x")
 const inputMouthScale = document.getElementById("mouth-scale")
 const inputMouthRotate = document.getElementById("mouth-transform-rotate")
 
+const inputName = document.getElementById("inputfield-name")
+
+// TODO can i make one big event listener or maybe per section?
 function main() {
+  //? name
+  inputName?.addEventListener("input", (e) => {
+    window.faceSVG.querySelector("title").textContent = e.currentTarget?.value || "My Emoji Creation"
+  })
+  
+  //? colors
 	inputColorTop?.addEventListener("input", (e) => {
 		window.faceSVG.style.setProperty("--c-top", e.target?.value)
 	})

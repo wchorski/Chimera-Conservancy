@@ -2,20 +2,23 @@
  * @typedef {import('./Types').PartType} PartType
  */
 
-import { getAllDocs } from "./db.js"
+import { getAllEmojiDocs } from "./db.js"
 
 //TODO wrap await functions in init() file without scope problems
 // async function init() {}
 /**
- * Avatar parts manifest with nested arrays of options
+ * Avatar parts manifest with nested arrays of options **IIFE (Immediately Invoked Function Expression)**
  * @type {Record<PartType, {url: string}[]>}
  */
-const manifest = await fetch("./public/manifest.json")
-	.then((r) => r.json())
-	.catch((error) => {
-		console.log(error)
-		return {}
-	})
+const manifest = await (async () => {
+  try {
+    const response = await fetch("./public/manifest.json");
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+    return {};
+  }
+})();
 
 /**
  * @type {Record<PartType, SVGElement[]>}
@@ -42,6 +45,7 @@ function drawAvatar() {
 		(a, b) => (Number(a.dataset.z) || 0) - (Number(b.dataset.z) || 0)
 	)
 	const title = window.faceSVG.querySelector("title")
+  // title.textContent = "My Emoji Creation"
 	const defs = window.faceSVG.querySelector("defs")
 	window.faceSVG.replaceChildren(title, defs, ...sorted)
 }
@@ -125,8 +129,6 @@ function createSVGElementWrapper(elements, titleContent) {
 	title.textContent = titleContent
 	svg.append(title)
 
-	// Create and append the g element
-	// const g = document.createElementNS("http://www.w3.org/2000/svg", "g")
 	svg.append(...elements)
 
 	return svg
@@ -155,18 +157,6 @@ function updatePart(type, i) {
 	avatarEls[type].length = 0
 	avatarEls[type].push(...clonedEls)
 	drawAvatar()
-}
-
-/** @param {string} svg  */
-function renderSVG(svg) {
-	const parser = new DOMParser()
-	const doc = parser.parseFromString(svg, "image/svg+xml")
-	const svgElement = doc.documentElement
-
-	if (svgElement.tagName === "svg") {
-		// Insert into DOM safely
-		document.getElementById("face-container")?.appendChild(svgElement)
-	}
 }
 
 async function main() {
@@ -205,9 +195,9 @@ async function main() {
 		console.error("Failed to load avatar parts:", error)
 	}
 
-	const docs = await getAllDocs()
-	if (!docs) throw new Error("emoji docs not found")
-	docs?.map((doc) => renderSVG(doc.svg))
+	// const docs = await getAllEmojiDocs()
+	// if (!docs) throw new Error("emoji docs not found")
+	// docs?.map((doc) => renderSVG(doc.svg))
 
 	setupUi()
 }
@@ -270,6 +260,7 @@ function setupUi() {
 			// btn.classList.add("selected")
 			activeTileButton.classList.add("selected")
 		}
+    // TODO can i use one event listener for all buttons?
 		btn.addEventListener("click", (e) => updateTileSet(type, btn))
 		btn.innerText = type
 		categoryTabs.append(btn)

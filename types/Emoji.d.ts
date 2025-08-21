@@ -11,3 +11,5 @@ export type NewEmoji = {
 	svg: string
 	date: string
 }
+
+export type EmojiSet = CustomEvent<Emoji>
