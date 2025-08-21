@@ -28,6 +28,9 @@ A Mii style emoji editor to create player avitars
 - [ ] message cards link db id and make delete button (with confirm)
 - [ ] fix: not all brows react to sliders
 - [x] each emoji's `<title>` tag should have its name
+- [ ] make emoji inputs more comfortable on mobile touchscreens
+- [ ] work on `/ranch` w pub/sub for emojis and messages
+- [ ] clue in overflowing tiles with some sort of fade that cuts through the bottom row of buttons?
 
 ## Credits
 > Vector Ranks Pack by @RhosGFX!

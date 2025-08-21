@@ -34,7 +34,7 @@ const avatarEls = {
 }
 // const faceSVG = document.getElementById("face-svg")
 window.faceSVG = document.getElementById("face-svg")
-const partTiles = document.getElementById("part-tiles")
+const tilesWrap = document.getElementById("part-tiles")
 const categoryTabs = document.getElementById("category-tabs")
 let activeTileSet = document.createElement("div")
 let activeTileButton = document.createElement("button")
@@ -230,7 +230,7 @@ function loadTileSet(type) {
 	}
 
 	wrapper.replaceChildren(...btns)
-	partTiles?.append(wrapper)
+	tilesWrap?.append(wrapper)
 }
 
 /**
@@ -238,6 +238,7 @@ function loadTileSet(type) {
  * @param {HTMLButtonElement} btn
  */
 function updateTileSet(type, btn) {
+  if(!tilesWrap) throw new Error("tile wrapper doesn't esxist")
 	activeTileSet.classList.add("hidden")
 	activeTileSet = document.getElementById(`${type}-tiles`)
 	activeTileSet.classList.remove("hidden")
@@ -245,6 +246,8 @@ function updateTileSet(type, btn) {
 	// btn.classList.remove("selected")
 	activeTileButton.classList.remove("selected")
 	btn.classList.add("selected")
+  tilesWrap.scrollTop = 0;
+  activeTileSet.scrollTop = 0;
 	activeTileButton = btn
 }
 

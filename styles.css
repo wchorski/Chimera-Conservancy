@@ -49,6 +49,8 @@ body {
 }
 
 #face-svg {
+  width: 100%;
+  height: auto;
 	max-width: 20rem;
 }
 
@@ -521,7 +523,7 @@ aside[role="toolbar"] {
 input[type="range"] {
 	appearance: none;
 	width: 100%;
-	height: 0.7em;
+	height: 1.5em;
 	outline: none;
 	border-radius: 99px;
 	background: rgb(99, 99, 99);
@@ -532,8 +534,8 @@ input[type="range"] {
 	&::-webkit-slider-thumb {
 		-webkit-appearance: none;
 		position: relative;
-		width: 20px;
-		height: 20px;
+		width: 30px;
+		height: 30px;
 		border-radius: 50%;
 		background: rgb(66, 66, 66);
 		border: 1px solid #664aff;
@@ -627,6 +629,27 @@ button.delete {
   }
 }
 
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+#part-tiles {
+  max-height: 20em;
+  /* overflow-y: scroll; */
+  background-color: rgba(0, 0, 0, 0.134);
+  border-radius: 10px;
+
+  & > .tileset-grid {
+    max-height: 20em;
+    overflow-y: scroll;
+  }
+}
 
 
 /* ANIMATION */
