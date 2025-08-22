@@ -2,7 +2,7 @@
  * @typedef {import('./Types').PartType} PartType
  */
 
-import { getAllEmojiDocs } from "./db.js"
+import { initUI } from "./ui.js";
 
 //TODO wrap await functions in init() file without scope problems
 // async function init() {}
@@ -159,7 +159,7 @@ function updatePart(type, i) {
 	drawAvatar()
 }
 
-async function main() {
+async function init() {
 	try {
 		await Promise.all(
 			Object.entries(manifest).map(async ([type, partOptions], index) => {
@@ -270,4 +270,5 @@ function setupUi() {
 	})
 }
 
-main()
+init()
+initUI()

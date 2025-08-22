@@ -11,38 +11,37 @@ const emojisWrap = document.getElementById("emojis-wrap")
 
 /** @param {EmojiSet} e */
 function handleEmojiSet(e) {
-	insertEmoji(e.detail)
+	if (!emojisWrap) throw new Error("wrap not found on dom")
+	insertOneEmoji(e.detail, 0, emojisWrap)
 }
+
 /** @param {DocDelete} e */
 function handleDocDelete(e) {
 	const id = e.detail
 	const el = emojisWrap?.querySelector(`[data-id="${id}"]`)
 	if (el) el.remove()
 }
-//@ts-ignore
-events.addEventListener("emojis:set", handleEmojiSet)
-//@ts-ignore
-events.addEventListener("emojis:delete", handleDocDelete)
 
 /**
  * Add a single new message to the top of the container
  * @param {Emoji} doc
- * @param {number} index - optional index for animation delay
+ * @param {number} i - optional index for animation delay
+ * @param {HTMLElement} wrap - optional index for animation delay
  */
-function insertEmoji(doc, index = 0) {
+export function insertOneEmoji(doc, i = 0, wrap) {
 	if (!emojisWrap) throw new Error("wrap not found")
 
-	const el = parseSVGToEl(doc)
+	const el = parseSVGToEl(doc, true)
 	el.classList.add("emoji-thumbnail", "anim-fade-in")
-	el.style.animationDelay = `${index * 80}ms`
+	el.style.animationDelay = `${i * 80}ms`
 
-	emojisWrap.prepend(el)
+	wrap.prepend(el)
 }
 
 /**
  * @param {Map<string, Emoji>} map
  */
-async function render(map) {
+export async function renderEmojiEls(map) {
 	if (!emojisWrap) throw new Error("doc wrapper not found on dom")
 	//? don't do any data fetching here multi times
 
@@ -58,7 +57,7 @@ async function render(map) {
 	}
 
 	const nodes = docs?.map((doc, i) => {
-		const el = parseSVGToEl(doc)
+		const el = parseSVGToEl(doc, true)
 		el.classList.add("emoji-thumbnail", "anim-fade-in")
 		el.style.animationDelay = `${i * 80}ms`
 		return el
@@ -68,17 +67,25 @@ async function render(map) {
 	emojisWrap.replaceChildren(...nodes)
 }
 
-async function init() {
+export async function initUI() {
 	await getAllEmojiDocs()
-	render(emojisMap)
+	renderEmojiEls(emojisMap)
+	//@ts-ignore
+	events.addEventListener("emojis:set", handleEmojiSet)
+	//@ts-ignore
+	events.addEventListener("emojis:delete", handleDocDelete)
 }
 
-init()
+// initUI()
 
+// TODO should i keep nested option to add delete button or just add it outside of this function?
+// TODO should i make it nested object `{ isDelete: true}` ?
 //* helpers
-/** @param {Emoji} doc  */
-function parseSVGToEl(doc) {
-	const { svg, _id } = doc
+/**
+ * @param {Emoji} doc
+ * @param {boolean} isDelete  */
+export function parseSVGToEl(doc, isDelete = false) {
+	const { svg, _id, name } = doc
 	const parser = new DOMParser()
 	const el = parser.parseFromString(svg, "image/svg+xml")
 	const svgElement = el.documentElement
@@ -86,10 +93,13 @@ function parseSVGToEl(doc) {
 	if (svgElement.tagName != "svg") throw Error("svg tagName is not `svg`")
 	// Insert into DOM safely
 
-	const deleteBtn = svgGDeleteButton(() => deleteEmoji(doc))
-	svgElement.appendChild(deleteBtn)
+	if (isDelete) {
+		const deleteBtn = svgGDeleteButton(() => deleteEmoji(doc))
+		svgElement.appendChild(deleteBtn)
+	}
 
 	svgElement.setAttribute("data-id", _id)
+	svgElement.setAttribute("data-name", name)
 	svgElement.id = _id
 
 	return svgElement

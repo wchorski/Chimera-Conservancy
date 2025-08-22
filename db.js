@@ -56,6 +56,7 @@ dbEmoji.replicate
 	.on("complete", function (info) {
 		// then two-way, continuous, retriable sync
 		syncDom?.setAttribute("data-sync-state", "connected")
+    syncDom?.setAttribute("title", `cloud sync: ${"connected"}`)
 		dbEmoji
 			.sync(remoteDB, opts)
 			//typescript no like
@@ -70,6 +71,7 @@ dbMessages.replicate
 	.on("complete", function (info) {
 		// then two-way, continuous, retriable sync
 		syncDom?.setAttribute("data-sync-state", "connected")
+    syncDom?.setAttribute("title", `cloud sync: ${"connected"}`)
 		dbMessages
 			.sync(remoteDBMessages, opts)
 			//typescript no like
@@ -152,6 +154,7 @@ dbEmoji
 function onSyncPaused() {
 	// console.log("onSyncPaused")
 	syncDom?.setAttribute("data-sync-state", "paused")
+  syncDom?.setAttribute("title", `cloud sync: ${"idle"}`)
 }
 
 /**
@@ -161,6 +164,7 @@ function onSyncPaused() {
 function onSyncError(error) {
 	if (error) {
 		syncDom?.setAttribute("data-sync-state", "error")
+    syncDom?.setAttribute("title", `cloud sync: ${"error"}`)
 		// console.log("DB SYNC ERROR: ", error)
 	}
 }

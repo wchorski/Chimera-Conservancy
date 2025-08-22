@@ -28,14 +28,14 @@ events.addEventListener("messages:delete", handleMessageDelete)
 /**
  * Add a single new message to the top of the container
  * @param {Message} doc
- * @param {number} index - optional index for animation delay
+ * @param {number} i - optional index for animation delay
  */
-function insertMessage(doc, index = 0) {
+function insertMessage(doc, i = 0) {
 	if (!msgWrap) throw new Error("msgWrap not found")
 
 	const p = buildMsgEl(doc)
 	p.classList.add("msg-card", "anim-fade-in")
-	p.style.animationDelay = `${index * 80}ms`
+	p.style.animationDelay = `${i * 80}ms`
 
 	msgWrap.prepend(p)
 }
