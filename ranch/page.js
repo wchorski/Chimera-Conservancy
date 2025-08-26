@@ -18,10 +18,9 @@ const emojiBWrap = document.getElementById("emojiB")
 const messageWrap = document.getElementById("messageWrap")
 const emojisWrap = document.getElementById("emojis-wrap")
 
-/**
- * @param {Message[]} messages
- * */
-function twoRandomEmoji(messages) {
+
+function twoRandomEmoji() {
+  const messageDocs = [...messagesMap.values()]
 	emojiAWrap?.replaceChildren()
 	emojiBWrap?.replaceChildren()
 	messageWrap?.replaceChildren()
@@ -57,9 +56,9 @@ function twoRandomEmoji(messages) {
 	)
 
 	// TODO make this cluttered function more modular
-	const rndNum = Math.floor(Math.random() * messages.length)
+	const rndNum = Math.floor(Math.random() * messageDocs.length)
 
-	const msg = messages[rndNum].message
+	const msg = messageDocs[rndNum].message
 
 	//? unsafe to do
 	// const parsedMsg =  msg.replace('[NAME_A]', `<strong>${emojiA.name}</strong>`).replace('NAME_B', emojiB.name)
@@ -138,14 +137,13 @@ async function init() {
 	events.addEventListener("emojis:delete", handleDocDelete)
 
 	const emojiDocs = [...emojisMap.values()]
-	const messageDocs = [...messagesMap.values()]
 
 	renderEmojis(emojiDocs)
 
-	twoRandomEmoji(messageDocs)
+	twoRandomEmoji()
 	setInterval(() => {
-		twoRandomEmoji(messageDocs)
-	}, 10000)
+		twoRandomEmoji()
+	}, 3000)
 }
 init()
 

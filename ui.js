@@ -7,6 +7,7 @@
 import { deleteEmoji, emojisMap, getAllEmojiDocs } from "./db.js"
 import { events } from "./events.js"
 
+// TODO remove any vars not inside functions
 const emojisWrap = document.getElementById("emojis-wrap")
 
 /** @param {EmojiSet} e */
