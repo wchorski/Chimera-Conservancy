@@ -1,5 +1,6 @@
 /**
  * @typedef {import('./types/Emoji').Emoji} Emoji
+ * @typedef {import('./types/Response').Response} Response
  * @typedef {import('./types/RemoveObject').RemoveObject} RemoveObject
  * @typedef {import('./types/Emoji').NewEmoji} NewEmoji
  * @typedef {import('./types/Messages').Message} Message
@@ -27,14 +28,21 @@ const {
 
 const syncDom = document.querySelector("#sync-state")
 
-const dbEmoji = new PouchDB(DB_COLLECTION)
+const dbEmoji = new PouchDB(DB_COLLECTION, {
+	//? creates database on remote CouchDB if none exists
+	skip_setup: false,
+	// TODO change to auth here for better readablility
+	// auth: { username: DB_USER, password: DB_PASSWORD },
+})
 const dbMessages = new PouchDB(DB_COLLECTION_MESSAGES)
-const remoteDB = `${DB_PROTOCOL}://${DB_USER}:${DB_PASSWORD}@${DB_URL}/${DB_COLLECTION}`
+const remoteDbUrl = `${DB_PROTOCOL}://${DB_USER}:${DB_PASSWORD}@${DB_URL}/${DB_COLLECTION}`
 const remoteDBMessages = `${DB_PROTOCOL}://${DB_USER}:${DB_PASSWORD}@${DB_URL}/${DB_COLLECTION_MESSAGES}`
 const opts = { live: true, retry: true }
 // /** @type {Message[]} */
 // export let allMessages = []
+/** @type {Map<string, Message>} */
 export const messagesMap = new Map()
+/** @type {Map<string, Emoji>} */
 export const emojisMap = new Map()
 
 // TODO have client login to play game
@@ -52,13 +60,13 @@ export const emojisMap = new Map()
 //? https://pouchdb.com/api.html#sync
 // do one way, one-off sync from the server until completion
 dbEmoji.replicate
-	.from(remoteDB)
+	.from(remoteDbUrl)
 	.on("complete", function (info) {
 		// then two-way, continuous, retriable sync
 		syncDom?.setAttribute("data-sync-state", "connected")
-    syncDom?.setAttribute("title", `cloud sync: ${"connected"}`)
+		syncDom?.setAttribute("title", `cloud sync: ${"connected"}`)
 		dbEmoji
-			.sync(remoteDB, opts)
+			.sync(remoteDbUrl, opts)
 			//typescript no like
 			// .on("change", onSyncChange)
 			.on("paused", onSyncPaused)
@@ -71,7 +79,7 @@ dbMessages.replicate
 	.on("complete", function (info) {
 		// then two-way, continuous, retriable sync
 		syncDom?.setAttribute("data-sync-state", "connected")
-    syncDom?.setAttribute("title", `cloud sync: ${"connected"}`)
+		syncDom?.setAttribute("title", `cloud sync: ${"connected"}`)
 		dbMessages
 			.sync(remoteDBMessages, opts)
 			//typescript no like
@@ -154,7 +162,7 @@ dbEmoji
 function onSyncPaused() {
 	// console.log("onSyncPaused")
 	syncDom?.setAttribute("data-sync-state", "paused")
-  syncDom?.setAttribute("title", `cloud sync: ${"idle"}`)
+	syncDom?.setAttribute("title", `cloud sync: ${"idle"}`)
 }
 
 /**
@@ -164,7 +172,7 @@ function onSyncPaused() {
 function onSyncError(error) {
 	if (error) {
 		syncDom?.setAttribute("data-sync-state", "error")
-    syncDom?.setAttribute("title", `cloud sync: ${"error"}`)
+		syncDom?.setAttribute("title", `cloud sync: ${"error"}`)
 		// console.log("DB SYNC ERROR: ", error)
 	}
 }
@@ -177,7 +185,7 @@ export async function getAllEmojiDocs() {
 	try {
 		const res = await dbEmoji.allDocs({ include_docs: true })
 
-    res.rows.forEach((row) => {
+		res.rows.forEach((row) => {
 			emojisMap.set(row.id, row.doc)
 		})
 
@@ -245,6 +253,19 @@ emojiForm?.addEventListener("submit", async (e) => {
 		console.log("createEmoji error: ", error)
 	}
 })
+
+/**
+ *
+ * @param {Emoji[]} docs
+ */
+async function dbCreateManyEmojis(docs) {
+	try {
+		const result = await dbEmoji.bulkDocs(docs)
+		console.log(result)
+	} catch (err) {
+		console.log(err)
+	}
+}
 
 /**
  *  @param {string} name
@@ -348,11 +369,90 @@ export async function deleteMessage(doc) {
  * @param {RemoveObject} doc
  */
 export async function deleteEmoji(doc) {
-  
 	try {
 		const res = await dbEmoji.remove(doc)
 		if (!res.ok) throw new Error("dbEmoji res is not OK")
 	} catch (error) {
 		throw new Error("dbEmoji failed", { cause: error })
+	}
+}
+
+// TODO seed database. create new database if one does not exist
+/**
+ * Seeds the database with emoji data
+ * @returns {Promise<Response>} The result of the seeding operation
+ */
+export async function dbSeedDatabase() {
+	try {
+		const response = await fetch("/public/ini/emojis-seed.json")
+		/** @type {Emoji[]} */
+		const docs = await response.json()
+		const docsRemovedRev = docs.map(({ _rev, ...data }) => data)
+		// TODO remove all `_rev` from seed
+		// console.log({ emojiSeed })
+		const res = await dbEmoji.bulkDocs(docsRemovedRev)
+		//@ts-ignore
+		if (res.some((obj) => obj.error === true)) {
+			throw new Error("🌱 database already (or partially) seeded with data")
+		}
+		return {
+			ok: true,
+			message: `Database has been seeded with ${res.length} new docs`,
+		}
+	} catch (error) {
+		// const seedError = new Error("seedDatabase failed", { cause: error })
+		// console.error(seedError)
+		return {
+			error: true,
+			message: error instanceof Error ? error.message : String(error),
+		}
+	}
+}
+
+/**
+ * Seeds the database with emoji data
+ * @param {Emoji[]} docs
+ * @returns {Promise<Response>} The result of the seeding operation
+ */
+export async function dbEmojiDeleteMany(docs) {
+	try {
+		const res = await dbEmoji.bulkDocs(
+			docs.map((doc) => ({ ...doc, _deleted: true }))
+		)
+		return {
+			ok: true,
+			message: "All Docs have been marked as _deleted",
+		}
+	} catch (error) {
+		console.log(error)
+		// const seedError = new Error("seedDatabase failed", { cause: error })
+		// console.error(seedError)
+		return {
+			error: true,
+			message:
+				error instanceof Error ? "Database not found" : "Database not found",
+		}
+	}
+}
+/**
+ * Seeds the database with emoji data
+ * @returns {Promise<Response>} The result of the seeding operation
+ */
+export async function dbEmojiDestroy() {
+	try {
+		const res = await dbEmoji.destroy()
+		return {
+			ok: true,
+			message: "Database has been destroyed",
+		}
+	} catch (error) {
+		console.log(error)
+		// const seedError = new Error("seedDatabase failed", { cause: error })
+		// console.error(seedError)
+		return {
+			error: true,
+			message:
+				error instanceof Error ? "Database not found" : "Database not found",
+		}
 	}
 }

@@ -18,9 +18,8 @@ const emojiBWrap = document.getElementById("emojiB")
 const messageWrap = document.getElementById("messageWrap")
 const emojisWrap = document.getElementById("emojis-wrap")
 
-
 function twoRandomEmoji() {
-  const messageDocs = [...messagesMap.values()]
+	const messageDocs = [...messagesMap.values()]
 	emojiAWrap?.replaceChildren()
 	emojiBWrap?.replaceChildren()
 	messageWrap?.replaceChildren()
@@ -116,8 +115,8 @@ function renderMsg(msg, nameMap) {
 
 /** @param {EmojiSet} e */
 function handleEmojiSet(e) {
-  if (!emojisWrap) throw new Error("wrap not found on dom")
-  insertOneEmoji(e.detail, 0, emojisWrap)
+	if (!emojisWrap) throw new Error("wrap not found on dom")
+	insertOneEmoji(e.detail, 0, emojisWrap)
 }
 
 /** @param {DocDelete} e */
@@ -155,7 +154,7 @@ function renderEmojis(docs) {
 	if (!emojisWrap) throw new Error("doc wrapper not found on dom")
 	// const docs = [...map.values()].toReversed()
 
-	if (!docs.length) {
+	if (!docs.length || docs.length === 0) {
 		emojisWrap.append(
 			Object.assign(document.createElement("p"), {
 				textContent: "No emojis found, create new one",

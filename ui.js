@@ -41,8 +41,9 @@ export function insertOneEmoji(doc, i = 0, wrap) {
 
 /**
  * @param {Map<string, Emoji>} map
+ * @param {HTMLElement} wrap
  */
-export async function renderEmojiEls(map) {
+export function renderEmojiEls(map, wrap) {
 	if (!emojisWrap) throw new Error("doc wrapper not found on dom")
 	//? don't do any data fetching here multi times
 
@@ -65,12 +66,13 @@ export async function renderEmojiEls(map) {
 	})
 
 	// Append all at once
-	emojisWrap.replaceChildren(...nodes)
+	wrap.replaceChildren(...nodes)
 }
 
 export async function initUI() {
 	await getAllEmojiDocs()
-	renderEmojiEls(emojisMap)
+  if(!emojisWrap) throw new Error("emojisWrap not found in dom")
+	renderEmojiEls(emojisMap, emojisWrap)
 	//@ts-ignore
 	events.addEventListener("emojis:set", handleEmojiSet)
 	//@ts-ignore

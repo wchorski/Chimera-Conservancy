@@ -623,6 +623,7 @@ form {
 
 .flex {
 	display: flex;
+  gap: 1rem;
 }
 
 hr {
@@ -721,11 +722,21 @@ button.delete {
 
 .side-by-side {
   display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
+  & *:first-child {
+    flex: 30%;
+  }
+  & *:last-child {
+    flex: 1fr;
+    
+  }
+  /* flex: content; */
 }
 
-.settings {
+.settings-wrap {
   margin-left: auto;
+  /* width: min(15em, 100%); */
 }
 
 .spaced-out {
@@ -736,4 +747,41 @@ button.delete {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+#db-message {
+  border-left-width: 5px;
+  border-left-style: solid;
+  border-left-color: var(--c-status, orange);
+  &:empty {
+    visibility: hidden;
+  }
+}
+
+/* [popover] {
+  position: fixed;
+  inset: 0;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  border: solid;
+  padding: 0.25em;
+  overflow: auto;
+  color: CanvasText;
+  background-color: Canvas;
+} */
+
+:popover-open {
+  /* margin-left: auto; */
+  width: min(15em, 100%);
+  /* height: 100px; */
+  position: absolute;
+  inset: unset;
+  bottom: 1rem;
+  right: 1rem;
+  margin: 0;
+}
+
+#settings::backdrop {
+  backdrop-filter: blur(2px) brightness(0.5);
 }
