@@ -1,382 +1,382 @@
 {
   "base": [
     {
-      "url": "public/base/squrcle.svg"
+      "url": "/public/base/squrcle.svg"
     },
     {
-      "url": "public/base/skull.svg"
+      "url": "/public/base/skull.svg"
     },
     {
-      "url": "public/base/robot.svg"
+      "url": "/public/base/robot.svg"
     },
     {
-      "url": "public/base/poo.svg"
+      "url": "/public/base/poo.svg"
     },
     {
-      "url": "public/base/melting.svg"
+      "url": "/public/base/melting.svg"
     },
     {
-      "url": "public/base/squrcle-chin.svg"
+      "url": "/public/base/squrcle-chin.svg"
     },
     {
-      "url": "public/base/half.svg"
+      "url": "/public/base/half.svg"
     },
     {
-      "url": "public/base/circle.svg"
+      "url": "/public/base/circle.svg"
     },
     {
-      "url": "public/base/empty.svg"
+      "url": "/public/base/empty.svg"
     }
   ],
   "eye": [
     {
-      "url": "public/eyes/wide.svg"
+      "url": "/public/eyes/wide.svg"
     },
     {
-      "url": "public/eyes/zanny.svg"
+      "url": "/public/eyes/zanny.svg"
     },
     {
-      "url": "public/eyes/tired.svg"
+      "url": "/public/eyes/tired.svg"
     },
     {
-      "url": "public/eyes/wink-right.svg"
+      "url": "/public/eyes/wink-right.svg"
     },
     {
-      "url": "public/eyes/right-open.svg"
+      "url": "/public/eyes/right-open.svg"
     },
     {
-      "url": "public/eyes/stars.svg"
+      "url": "/public/eyes/stars.svg"
     },
     {
-      "url": "public/eyes/drowzy.svg"
+      "url": "/public/eyes/drowzy.svg"
     },
     {
-      "url": "public/eyes/sunglasses.svg"
+      "url": "/public/eyes/sunglasses.svg"
     },
     {
-      "url": "public/eyes/hearts.svg"
+      "url": "/public/eyes/hearts.svg"
     },
     {
-      "url": "public/eyes/red-beads.svg"
+      "url": "/public/eyes/red-beads.svg"
     },
     {
-      "url": "public/eyes/down-crescent-even.svg"
+      "url": "/public/eyes/down-crescent-even.svg"
     },
     {
-      "url": "public/eyes/glasses.svg"
+      "url": "/public/eyes/glasses.svg"
     },
     {
-      "url": "public/eyes/dollars.svg"
+      "url": "/public/eyes/dollars.svg"
     },
     {
-      "url": "public/eyes/wide-down-right.svg"
+      "url": "/public/eyes/wide-down-right.svg"
     },
     {
-      "url": "public/eyes/crying.svg"
+      "url": "/public/eyes/crying.svg"
     },
     {
-      "url": "public/eyes/big-pupils.svg"
+      "url": "/public/eyes/big-pupils.svg"
     },
     {
-      "url": "public/eyes/small-pupil.svg"
+      "url": "/public/eyes/small-pupil.svg"
     },
     {
-      "url": "public/eyes/spirals.svg"
+      "url": "/public/eyes/spirals.svg"
     },
     {
-      "url": "public/eyes/rolled-back.svg"
+      "url": "/public/eyes/rolled-back.svg"
     },
     {
-      "url": "public/eyes/half-squint.svg"
+      "url": "/public/eyes/half-squint.svg"
     },
     {
-      "url": "public/eyes/strained.svg"
+      "url": "/public/eyes/strained.svg"
     },
     {
-      "url": "public/eyes/no-pupil.svg"
+      "url": "/public/eyes/no-pupil.svg"
     },
     {
-      "url": "public/eyes/wink.svg"
+      "url": "/public/eyes/wink.svg"
     },
     {
-      "url": "public/eyes/tear-up.svg"
+      "url": "/public/eyes/tear-up.svg"
     },
     {
-      "url": "public/eyes/flat-slits.svg"
+      "url": "/public/eyes/flat-slits.svg"
     },
     {
-      "url": "public/eyes/large.svg"
+      "url": "/public/eyes/large.svg"
     },
     {
-      "url": "public/eyes/slight-up-crescent.svg"
+      "url": "/public/eyes/slight-up-crescent.svg"
     },
     {
-      "url": "public/eyes/crossed-out.svg"
+      "url": "/public/eyes/crossed-out.svg"
     },
     {
-      "url": "public/eyes/down-crescent.svg"
+      "url": "/public/eyes/down-crescent.svg"
     },
     {
-      "url": "public/eyes/squint.svg"
+      "url": "/public/eyes/squint.svg"
     },
     {
-      "url": "public/eyes/blue-lined.svg"
+      "url": "/public/eyes/blue-lined.svg"
     },
     {
-      "url": "public/eyes/happy-crescent.svg"
+      "url": "/public/eyes/happy-crescent.svg"
     }
   ],
   "brow": [
     {
-      "url": "public/brows/soft.svg"
+      "url": "/public/brows/soft.svg"
     },
     {
-      "url": "public/brows/alternate.svg"
+      "url": "/public/brows/alternate.svg"
     },
     {
-      "url": "public/brows/right-raised.svg"
+      "url": "/public/brows/right-raised.svg"
     },
     {
-      "url": "public/brows/one-raised.svg"
+      "url": "/public/brows/one-raised.svg"
     },
     {
-      "url": "public/brows/worry.svg"
+      "url": "/public/brows/worry.svg"
     },
     {
-      "url": "public/brows/serious.svg"
+      "url": "/public/brows/serious.svg"
     },
     {
-      "url": "public/brows/suprise.svg"
+      "url": "/public/brows/suprise.svg"
     },
     {
-      "url": "public/brows/empty.svg"
+      "url": "/public/brows/empty.svg"
     }
   ],
   "mouth": [
     {
-      "url": "public/mouth/open-smile.svg"
+      "url": "/public/mouth/open-smile.svg"
     },
     {
-      "url": "public/mouth/zipper.svg"
+      "url": "/public/mouth/zipper.svg"
     },
     {
-      "url": "public/mouth/yawn.svg"
+      "url": "/public/mouth/yawn.svg"
     },
     {
-      "url": "public/mouth/whoozy.svg"
+      "url": "/public/mouth/whoozy.svg"
     },
     {
-      "url": "public/mouth/frown-open.svg"
+      "url": "/public/mouth/frown-open.svg"
     },
     {
-      "url": "public/mouth/smirk.svg"
+      "url": "/public/mouth/smirk.svg"
     },
     {
-      "url": "public/mouth/shush.svg"
+      "url": "/public/mouth/shush.svg"
     },
     {
-      "url": "public/mouth/party-horn.svg"
+      "url": "/public/mouth/party-horn.svg"
     },
     {
-      "url": "public/mouth/one-tooth.svg"
+      "url": "/public/mouth/one-tooth.svg"
     },
     {
-      "url": "public/mouth/chubby.svg"
+      "url": "/public/mouth/chubby.svg"
     },
     {
-      "url": "public/mouth/tongue-dollar.svg"
+      "url": "/public/mouth/tongue-dollar.svg"
     },
     {
-      "url": "public/mouth/small-o.svg"
+      "url": "/public/mouth/small-o.svg"
     },
     {
-      "url": "public/mouth/tongue-poke.svg"
+      "url": "/public/mouth/tongue-poke.svg"
     },
     {
-      "url": "public/mouth/frown-long.svg"
+      "url": "/public/mouth/frown-long.svg"
     },
     {
-      "url": "public/mouth/small-line.svg"
+      "url": "/public/mouth/small-line.svg"
     },
     {
-      "url": "public/mouth/tongue-out.svg"
+      "url": "/public/mouth/tongue-out.svg"
     },
     {
-      "url": "public/mouth/thermometer.svg"
+      "url": "/public/mouth/thermometer.svg"
     },
     {
-      "url": "public/mouth/explicit.svg"
+      "url": "/public/mouth/explicit.svg"
     },
     {
-      "url": "public/mouth/mask.svg"
+      "url": "/public/mouth/mask.svg"
     },
     {
-      "url": "public/mouth/open-hand.svg"
+      "url": "/public/mouth/open-hand.svg"
     },
     {
-      "url": "public/mouth/vomit.svg"
+      "url": "/public/mouth/vomit.svg"
     },
     {
-      "url": "public/mouth/open-no-teeth.svg"
+      "url": "/public/mouth/open-no-teeth.svg"
     },
     {
-      "url": "public/mouth/side-tongue.svg"
+      "url": "/public/mouth/side-tongue.svg"
     },
     {
-      "url": "public/mouth/exhale.svg"
+      "url": "/public/mouth/exhale.svg"
     },
     {
-      "url": "public/mouth/kiss.svg"
+      "url": "/public/mouth/kiss.svg"
     },
     {
-      "url": "public/mouth/slight-open-smile.svg"
+      "url": "/public/mouth/slight-open-smile.svg"
     },
     {
-      "url": "public/mouth/flat.svg"
+      "url": "/public/mouth/flat.svg"
     },
     {
-      "url": "public/mouth/open-down.svg"
+      "url": "/public/mouth/open-down.svg"
     },
     {
-      "url": "public/mouth/frown-slant.svg"
+      "url": "/public/mouth/frown-slant.svg"
     },
     {
-      "url": "public/mouth/zigzag.svg"
+      "url": "/public/mouth/zigzag.svg"
     },
     {
-      "url": "public/mouth/grit.svg"
+      "url": "/public/mouth/grit.svg"
     },
     {
-      "url": "public/mouth/smile-lips.svg"
+      "url": "/public/mouth/smile-lips.svg"
     },
     {
-      "url": "public/mouth/smile-teeth.svg"
+      "url": "/public/mouth/smile-teeth.svg"
     },
     {
-      "url": "public/mouth/down-open.svg"
+      "url": "/public/mouth/down-open.svg"
     },
     {
-      "url": "public/mouth/frown.svg"
+      "url": "/public/mouth/frown.svg"
     },
     {
-      "url": "public/mouth/gasp.svg"
+      "url": "/public/mouth/gasp.svg"
     },
     {
-      "url": "public/mouth/grin.svg"
+      "url": "/public/mouth/grin.svg"
     },
     {
-      "url": "public/mouth/jaw-drop.svg"
+      "url": "/public/mouth/jaw-drop.svg"
     },
     {
-      "url": "public/mouth/empty.svg"
+      "url": "/public/mouth/empty.svg"
     }
   ],
   "nose": [
     {
-      "url": "public/nose/empty.svg"
+      "url": "/public/nose/empty.svg"
     },
     {
-      "url": "public/nose/hand-open.svg"
+      "url": "/public/nose/hand-open.svg"
     },
     {
-      "url": "public/nose/hand-point.svg"
+      "url": "/public/nose/hand-point.svg"
     },
     {
-      "url": "public/nose/tissue.svg"
+      "url": "/public/nose/tissue.svg"
     },
     {
-      "url": "public/nose/pinocchio.svg"
+      "url": "/public/nose/pinocchio.svg"
     },
     {
-      "url": "public/nose/exhale-steam.svg"
+      "url": "/public/nose/exhale-steam.svg"
     },
     {
-      "url": "public/nose/hand-peak.svg"
+      "url": "/public/nose/hand-peak.svg"
     },
     {
-      "url": "public/nose/heart.svg"
+      "url": "/public/nose/heart.svg"
     },
     {
-      "url": "public/nose/drool.svg"
+      "url": "/public/nose/drool.svg"
     },
     {
-      "url": "public/nose/disguise.svg"
+      "url": "/public/nose/disguise.svg"
     },
     {
-      "url": "public/nose/tear.svg"
+      "url": "/public/nose/tear.svg"
     },
     {
-      "url": "public/nose/clown-nose.svg"
+      "url": "/public/nose/clown-nose.svg"
     }
   ],
   "cheek": [
     {
-      "url": "public/cheek/cheeks.svg"
+      "url": "/public/cheek/cheeks.svg"
     },
     {
-      "url": "public/cheek/two-tears.svg"
+      "url": "/public/cheek/two-tears.svg"
     },
     {
-      "url": "public/cheek/hands-on-cheeks.svg"
+      "url": "/public/cheek/hands-on-cheeks.svg"
     },
     {
-      "url": "public/cheek/empty.svg"
+      "url": "/public/cheek/empty.svg"
     }
   ],
   "hat": [
     {
-      "url": "public/hat/empty.svg"
+      "url": "/public/hat/empty.svg"
     },
     {
-      "url": "public/hat/hearts.svg"
+      "url": "/public/hat/hearts.svg"
     },
     {
-      "url": "public/hat/halo.svg"
+      "url": "/public/hat/halo.svg"
     },
     {
-      "url": "public/hat/sleepy-zs.svg"
+      "url": "/public/hat/sleepy-zs.svg"
     },
     {
-      "url": "public/hat/salute.svg"
+      "url": "/public/hat/salute.svg"
     },
     {
-      "url": "public/hat/party.svg"
+      "url": "/public/hat/party.svg"
     },
     {
-      "url": "public/hat/hand-palms.svg"
+      "url": "/public/hat/hand-palms.svg"
     },
     {
-      "url": "public/hat/two-sweat.svg"
+      "url": "/public/hat/two-sweat.svg"
     },
     {
-      "url": "public/hat/monocle.svg"
+      "url": "/public/hat/monocle.svg"
     },
     {
-      "url": "public/hat/bandage.svg"
+      "url": "/public/hat/bandage.svg"
     },
     {
-      "url": "public/hat/cloud.svg"
+      "url": "/public/hat/cloud.svg"
     },
     {
-      "url": "public/hat/explosion.svg"
+      "url": "/public/hat/explosion.svg"
     },
     {
-      "url": "public/hat/outline.svg"
+      "url": "/public/hat/outline.svg"
     },
     {
-      "url": "public/hat/cowboy.svg"
+      "url": "/public/hat/cowboy.svg"
     },
     {
-      "url": "public/hat/icicles.svg"
+      "url": "/public/hat/icicles.svg"
     },
     {
-      "url": "public/hat/clown-hair.svg"
+      "url": "/public/hat/clown-hair.svg"
     },
     {
-      "url": "public/hat/sweat.svg"
+      "url": "/public/hat/sweat.svg"
     },
     {
-      "url": "public/hat/horns.svg"
+      "url": "/public/hat/horns.svg"
     }
   ]
 }

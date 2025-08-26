@@ -32,6 +32,7 @@ A Mii style emoji editor to create player avitars
 - [ ] work on `/ranch` w pub/sub for emojis and messages
 - [ ] clue in overflowing tiles with some sort of fade that cuts through the bottom row of buttons?
 - [ ] fix color issue with cheeks and brows being red after creation
+- [ ] button to init databases with starter data and init/reset data button (on homepage settings sidebar)
 
 ## Credits
 > Vector Ranks Pack by @RhosGFX!

@@ -1,8 +1,8 @@
 /**
- * @typedef {import('./Types').PartType} PartType
+ * @typedef {import('../Types').PartType} PartType
  */
 
-import { initUI } from "./ui.js";
+import { initUI } from "../ui.js";
 
 //TODO wrap await functions in init() file without scope problems
 // async function init() {}
@@ -12,7 +12,7 @@ import { initUI } from "./ui.js";
  */
 const manifest = await (async () => {
   try {
-    const response = await fetch("./public/manifest.json");
+    const response = await fetch("../public/manifest.json");
     return await response.json();
   } catch (error) {
     console.log(error);

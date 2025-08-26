@@ -1,414 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" ></meta>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" ></meta>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Chimera Conservancy</title>
-		<link rel="stylesheet" href="styles.css" />
-		<link rel="stylesheet" href="parts.css" />
-		<script src="./envs.js" type="module" defer></script>
-		<script src="./db.js" type="module" defer></script>
-		<script src="./page.js" type="module" defer></script>
-		<script src="./ui.js" type="module" defer></script>
-		<script src="./toolbar.js" type="module" defer></script>
+		<link rel="stylesheet" href="./global.css" />
+    <script src="/db.js" type="module" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/pouchdb@9.0.0/dist/pouchdb.min.js"></script>
 	</head>
-	<body>
-    <span data-sync-state="connecting" id="sync-state"> ␖ </span>
-		<h1 class="none">Chimera Conservancy</h1>
-		<!-- <img src="./face.svg" width="300" /> -->
-    <section id="emojis-wrap"></section>
-		<section class="avatar-preview">
-			<svg id="face-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-				<title>Face Creator</title>
-				<defs>
-					<linearGradient
-						id="varGradient"
-						x1="0%"
-						y1="0%"
-						x2="0%"
-						y2="100%"
-						gradientUnits="userSpaceOnUse"
-					>
-						<stop offset="0%" stop-color="var(--c-top, gold)" />
-						<stop offset="10%" stop-color="var(--c-top, gold)" />
-						<stop offset="88%" stop-color="var(--c-bottom, goldenrod)" />
-						<stop offset="100%" stop-color="var(--c-bottom, goldenrod)" />
-					</linearGradient>
-				</defs>
-			</svg>
+	<body class="vertical-space-between">
+		<!-- <span data-sync-state="connecting" id="sync-state"> ␖ </span> -->
+		<div class="side-by-side">
+			<section>
+				<!-- TODO single, auto updating face? -->
+				<img src="/public/logo.svg" width="300" />
+				<h1>Chimera Conservancy</h1>
+			</section>
 
-			<aside role="toolbar">
-        <form id="saveForm">
-          <fieldset>
-            <label for="name">
-              <span>name</span>
-              <input id="inputfield-name" name="name" type="text" placeholder="name..." required min="3" max="15"/>
-            </label>
-            <button type="submit">save</button>
-          </fieldset>
-        </form>
-				<fieldset class="grid" id="color-editor">
-					<label class="grid">
-						<span>top color</span>
-						<input type="color" id="colorpicker-top" value="#efdd3e" />
-					</label>
-					<label class="grid">
-						<span>bottom color</span>
-						<input type="color" id="colorpicker-bottom" value="#e2c058" />
-					</label>
-				</fieldset>
-				<fieldset class="grid" id="brow-editor">
-					<legend>brow editor</legend>
-					<label>
-						<span title="raise">
-              <img
-								class="icon"
-								alt="icon up"
-								src="icons/up.svg"
-								height="30"
-								width="30"
-							/>
-            </span>
-						<input
-							type="range"
-							min="-1"
-							max="1"
-							step="0.1"
-							value="-0.3"
-							id="brow-transform-y"
-						/>
-						<span title="lower">
-              <img
-								class="icon"
-								alt="icon down"
-								src="icons/down.svg"
-								height="30"
-								width="30"
-							/>
-            </span>
-					</label>
-					<label>
-						<span title="seperate">
-              <img
-								class="icon"
-								alt="icon seperate"
-								src="icons/seperate.svg"
-								height="30"
-								width="30"
-							/>
-            </span>
-						<input
-							type="range"
-							min="-1"
-							max="1"
-							step="0.1"
-							value="0"
-							id="brow-transform-x"
-						/>
-						<span title="merge">
-              <img
-								class="icon"
-								alt="icon merge"
-								src="icons/merge.svg"
-								height="30"
-								width="30"
-							/>
-            </span>
-					</label>
-					<label>
-						<span title="shrink">
-              <img
-								class="icon"
-								alt="icon shrink"
-								src="icons/shrink.svg"
-								height="30"
-								width="30"
-							/>
-            </span>
-						<input
-							type="range"
-							min="0.3"
-							max="1"
-							step="0.1"
-							value="0.5"
-							id="brow-scale"
-						/>
-						<span title="grow">
-              <img
-								class="icon"
-								alt="icon grow"
-								src="icons/grow.svg"
-								height="30"
-								width="30"
-							/>
-            </span>
-					</label>
-					<label>
-						<span title="clockwise">
-              <img
-								class="icon"
-								alt="icon clockwise"
-								src="icons/clockwise.svg"
-								height="30"
-								width="30"
-						/>
-            </span>
-						<input
-							type="range"
-							min="-1"
-							max="1"
-							step="0.1"
-							value="0"
-							id="brow-transform-rotate"
-						/>
-						<span title="counter clockwise">
-              <img
-								class="icon"
-								alt="icon counter clockwise"
-								src="icons/counterclockwise.svg"
-								height="30"
-								width="30"
-							/>
-            </span>
-					</label>
-				</fieldset>
-				<fieldset class="grid" id="eye-editor">
-					<legend>eye editor</legend>
-					<label>
-						<span title="raise">
-              <img
-								class="icon"
-								alt="icon up"
-								src="icons/up.svg"
-								height="30"
-								width="30"
-							/>
-            </span>
-						<input
-							type="range"
-							min="-1"
-							max="1"
-							step="0.1"
-							value="0"
-							id="eye-transform-y"
-						/>
-						<span title="lower">
-              <img
-								class="icon"
-								alt="icon down"
-								src="icons/down.svg"
-								height="30"
-								width="30"
-							/>
-            </span>
-					</label>
-					<label>
-						<span title="seperate">
-              <img
-								class="icon"
-								alt="icon seperate"
-								src="icons/seperate.svg"
-								height="30"
-								width="30"
-							/>
-            </span>
-						<input
-							type="range"
-							min="-1"
-							max="1"
-							step="0.1"
-							value="0"
-							id="eye-transform-x"
-						/>
-						<span title="merge">
-              <img
-								class="icon"
-								alt="icon merge"
-								src="icons/merge.svg"
-								height="30"
-								width="30"
-							/>
-            </span>
-					</label>
-					<label>
-						<span title="shrink">
-              <img
-								class="icon"
-								alt="icon shrink"
-								src="icons/shrink.svg"
-								height="30"
-								width="30"
-							/>
-            </span>
-						<input
-							type="range"
-							min="0.3"
-							max="1"
-							step="0.1"
-							value="0.5"
-							id="eye-scale"
-						/>
-						<span title="grow">
-              <img
-								class="icon"
-								alt="icon grow"
-								src="icons/grow.svg"
-								height="30"
-								width="30"
-							/>
-						</span>
-            </span>
-					</label>
-					<label>
-						<span title="clockwise"
-							><img
-								class="icon"
-								alt="icon clockwise"
-								src="icons/clockwise.svg"
-								height="30"
-								width="30"
-						/></span>
-						<input
-							type="range"
-							min="-1"
-							max="1"
-							step="0.1"
-							value="0"
-							id="eye-transform-rotate"
-						/>
-						<span title="counter clockwise">
-							<img
-								class="icon"
-								alt="icon counter clockwise"
-								src="icons/counterclockwise.svg"
-								height="30"
-								width="30"
-							/>
-						</span>
-					</label>
-				</fieldset>
-				<fieldset class="grid" id="mouth-editor">
-					<legend>mouth editor</legend>
-					<label>
-						<!-- <span title="raise">⇡</span> -->
-						<span title="raise">
-							<img
-								class="icon"
-								alt="icon up"
-								src="icons/up.svg"
-								height="30"
-								width="30"
-							/>
-						</span>
-						<input
-							type="range"
-							min="-1"
-							max="1"
-							step="0.1"
-							value="0"
-							id="mouth-transform-y"
-						/>
-						<span title="lower">
-							<img
-								class="icon"
-								alt="icon down"
-								src="icons/down.svg"
-								height="30"
-								width="30"
-							/>
-						</span>
-					</label>
-					<label>
-						<span title="seperate">
-							<img
-								class="icon"
-								alt="icon seperate"
-								src="icons/seperate.svg"
-								height="30"
-								width="30"
-							/>
-						</span>
-						<input
-							type="range"
-							min="-1"
-							max="1"
-							step="0.1"
-							value="0"
-							id="mouth-transform-x"
-						/>
-						<span title="merge">
-							<img
-								class="icon"
-								alt="icon merge"
-								src="icons/merge.svg"
-								height="30"
-								width="30"
-							/>
-						</span>
-					</label>
-					<label>
-						<span title="shrink">
-							<img
-								class="icon"
-								alt="icon shrink"
-								src="icons/shrink.svg"
-								height="30"
-								width="30"
-							/>
-						</span>
-						<input
-							type="range"
-							min="0.3"
-							max="1"
-							step="0.1"
-							value="0.5"
-							id="mouth-scale"
-						/>
-						<span title="grow">
-							<img
-								class="icon"
-								alt="icon grow"
-								src="icons/grow.svg"
-								height="30"
-								width="30"
-							/>
-						</span>
-					</label>
-					<label>
-						<span title="clockwise">
-							<img
-								class="icon"
-								alt="icon clockwise"
-								src="icons/clockwise.svg"
-								height="30"
-								width="30"
-							/>
-						</span>
-						<input
-							type="range"
-							min="-1"
-							max="1"
-							step="0.1"
-							value="0"
-							id="mouth-transform-rotate"
-						/>
-						<span title="counter clockwise">
-							<img
-								class="icon"
-								alt="icon counter clockwise"
-								src="icons/counterclockwise.svg"
-								height="30"
-								width="30"
-							/>
-						</span>
-					</label>
-				</fieldset>
-			</aside>
-		</section>
-
-		<section id="category-tabs" role="category"></section>
-		<br />
-		<section id="part-tiles" class="stack"></section>
+			<section class="card-grid">
+				<div class="card">
+					<a href="/create/">
+						<h3><!--  -->reate emoji</h3>
+						<p>
+							Mix and match face, eyes, brows, mouth and more in the emoji
+							creator
+						</p>
+					</a>
+				</div>
+				<div class="card">
+					<a href="/messages/">
+						<h3>write a message</h3>
+						<p>Craft mad-lib style senarios that incorperate 2 players</p>
+					</a>
+				</div>
+				<div class="card">
+					<a href="/ranch/">
+						<h3>Play</h3>
+						<p>View all the emojis and their interactions on the playfield</p>
+					</a>
+				</div>
+			</section>
+		</div>
+    <section class="settings">
+      <h2>Settings</h2>
+      <div>
+        <button>init database</button>
+        <button>reset database</button>
+      </div>
+    </section>
 	</body>
 </html>

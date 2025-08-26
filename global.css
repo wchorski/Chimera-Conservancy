@@ -7,6 +7,19 @@ body {
 	background-color: rgb(74, 151, 89);
 	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
 		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 1rem;
+  height: 100vh;
+  height: 100dvh;
+  box-sizing: border-box;
+}
+
+a {
+	color: #c91483;
+
+	&:hover {
+		color: #3cae53;
+	}
 }
 
 #base {
@@ -42,15 +55,15 @@ body {
 	& svg {
 		width: 50px;
 	}
-  max-height: 8rem;
-  background-color: rgba(0, 0, 0, 0.203);
-  overflow-y: scroll;
-  border-radius: 10px;
+	max-height: 8rem;
+	background-color: rgba(0, 0, 0, 0.203);
+	overflow-y: scroll;
+	border-radius: 10px;
 }
 
 #face-svg {
-  width: 100%;
-  height: auto;
+	width: 100%;
+	height: auto;
 	max-width: 20rem;
 }
 
@@ -376,8 +389,8 @@ line {
 		color: white;
 	}
 
-  & > button.selected {
-    background: linear-gradient(
+	& > button.selected {
+		background: linear-gradient(
 			180deg,
 			navy 10%,
 			rgb(79, 147, 174) 60%,
@@ -385,7 +398,7 @@ line {
 			skyblue 100%
 		);
 		color: rgb(199, 199, 199);
-  }
+	}
 
 	& > button:first-child {
 		border-top-left-radius: var(--br);
@@ -443,7 +456,7 @@ button:active {
 
 .avatar-preview {
 	display: flex;
-  flex-wrap: wrap;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	margin-bottom: 1rem;
 }
@@ -562,115 +575,165 @@ input[type="range"] {
 }
 
 #messages-wrap {
-  display: grid;
+	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 20rem));
 	gap: 1rem;
 	align-content: baseline;
-  justify-content: center;
+	justify-content: center;
 }
 
 .msg-card {
-  background-color: white;
-  border-radius: 10px;
-  padding: 1rem;
-  margin-block: 0;
+	background-color: white;
+	border-radius: 10px;
+	padding: 1rem;
+	margin-block: 0;
 
-  &.new {
-    border: double yellow 3px;
-  }
+	&.new {
+		border: double yellow 3px;
+	}
 }
 
 form {
-  max-width: 30rem;
-  display: grid;
-  gap: 0.7rem;
+	max-width: 30rem;
+	display: grid;
+	gap: 0.7rem;
 
-  & > label,
-  & > fieldset > label {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-  }
+	& > label,
+	& > fieldset > label {
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
+	}
 
-  & textarea {
-    width: 100%;
-    box-sizing: border-box;
-    min-height: 10rem;
-    resize: vertical;
-  }
+	& textarea {
+		width: 100%;
+		box-sizing: border-box;
+		min-height: 10rem;
+		resize: vertical;
+	}
 
-  & .success {
-    background-color: green;
-    color: white;
-    margin-block: 0;
-    padding: 0.2rem;
-    visibility: hidden;
-  }
+	& .success {
+		background-color: green;
+		color: white;
+		margin-block: 0;
+		padding: 0.2rem;
+		visibility: hidden;
+	}
 }
 
 .flex {
-  display: flex;
+	display: flex;
 }
 
 hr {
-  margin-block: 2rem;
+	margin-block: 2rem;
 }
 
 button.delete {
-  /* border-radius: 50%; */
-  /* padding: 1rem; */
-  position: absolute;
-  top: 0;
-  right: 0;
+	/* border-radius: 50%; */
+	/* padding: 1rem; */
+	position: absolute;
+	top: 0;
+	right: 0;
 
-  &:hover{
-    background-color: red;
-    color: white;
-  }
+	&:hover {
+		background-color: red;
+		color: white;
+	}
 }
 
 ::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 7px;
+	-webkit-appearance: none;
+	width: 7px;
 }
 ::-webkit-scrollbar-thumb {
-  border-radius: 8px;
-  background-color: rgba(0, 0, 0, .5);
-  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+	border-radius: 8px;
+	background-color: rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
 #part-tiles {
-  max-height: 20em;
-  /* overflow-y: scroll; */
-  background-color: rgba(0, 0, 0, 0.134);
-  border-radius: 10px;
+	max-height: 20em;
+	/* overflow-y: scroll; */
+	background-color: rgba(0, 0, 0, 0.134);
+	border-radius: 10px;
 
-  & > .tileset-grid {
-    max-height: 20em;
-    overflow-y: scroll;
-  }
+	& > .tileset-grid {
+		max-height: 20em;
+		overflow-y: scroll;
+	}
 }
-
 
 /* ANIMATION */
 .anim-fade-in {
-  opacity: 0;
-  animation: fadeIn 1s ease-in forwards;
+	opacity: 0;
+	animation: fadeIn 1s ease-in forwards;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 .emoji-thumbnail {
-  & .delete-btn {
-    transition: opacity, scale 300ms;
-    scale: 0.7;
-    transform-origin: 25% 25%;
-    opacity: 0;
-  }
-  &:hover .delete-btn {
-    opacity: 1;
-    scale: 1;
-  }
+	& .delete-btn {
+		transition: opacity, scale 300ms;
+		scale: 0.7;
+		transform-origin: 25% 25%;
+		opacity: 0;
+	}
+	&:hover .delete-btn {
+		opacity: 1;
+		scale: 1;
+	}
+}
+
+.card {
+	background-color: whitesmoke;
+	border-radius: 3px;
+	box-shadow: rgba(0, 0, 0, 0.27) 3px 3px 3px;
+	padding: 1rem;
+
+	& h3:first-child {
+		margin-top: 0;
+		text-transform: capitalize;
+	}
+
+	& a {
+		text-decoration: none;
+
+		&:hover h3 {
+			text-decoration: underline dotted;
+		}
+	}
+}
+
+.card-grid {
+	display: grid;
+	gap: 1rem;
+	/* grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 20rem)); */
+}
+
+.side-by-side {
+  display: flex;
+  gap: 2rem;
+}
+
+.settings {
+  margin-left: auto;
+}
+
+.spaced-out {
+  display: flex;
+}
+
+.vertical-space-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
