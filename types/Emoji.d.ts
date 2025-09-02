@@ -7,6 +7,7 @@ export type Emoji = {
 }
 
 export type NewEmoji = {
+	_id?: string
 	name: string
 	svg: string
 	date: string

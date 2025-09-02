@@ -5,13 +5,18 @@ import {
 	dbSeedDatabase,
 	emojisMap,
 	dbEmojiDeleteMany,
+	messagesMap,
+	dbDeleteAllDocs,
+	getAllMessageDocs,
 } from "./db.js"
 import { events } from "./events.js"
+import { renderMessagesEls } from "./messages/ui.js"
 
 const seedDbBtn = document.getElementById("seed-db-btn")
 const destroyDdBtn = document.getElementById("destroy-db-btn")
 const dbMessage = document.getElementById("db-message")
 const emojisWrap = document.getElementById("emojis-wrap")
+const messagesWrap = document.getElementById("messages-wrap")
 
 /** @param {import("types/Emoji.js").EmojiSet} e */
 function handleEmojiSet(e) {
@@ -28,18 +33,25 @@ function handleDocDelete(e) {
 
 async function init() {
 	if (!dbMessage) throw new Error("dbMessage not found in dom")
-	if (!emojisWrap) throw new Error("dbMessage not found in dom")
+	if (!emojisWrap) throw new Error("emojisWrap not found in dom")
+	if (!messagesWrap) throw new Error("messagesWrap not found in dom")
 	await getAllEmojiDocs()
+	await getAllMessageDocs()
 
 	seedDbBtn?.addEventListener("pointerup", async (e) => {
 		const res = await dbSeedDatabase()
-		if (res.error) dbMessage.style.setProperty("--c-status", "red")
-		if (res.ok) dbMessage.style.setProperty("--c-status", "green")
-		dbMessage.textContent = res.message
+		const { error, ok, message } = res
+		if (error) dbMessage.style.setProperty("--c-status", "red")
+		if (ok) dbMessage.style.setProperty("--c-status", "green")
+		dbMessage.textContent = message
 	})
 
 	destroyDdBtn?.addEventListener("pointerup", async (e) => {
-		const res = await dbEmojiDeleteMany([...emojisMap.values()])
+		// const res = await dbEmojiDeleteMany([...emojisMap.values()])
+		const res = await dbDeleteAllDocs(
+			[...emojisMap.values()],
+			[...messagesMap.values()]
+		)
 		if (res.error) dbMessage.style.setProperty("--c-status", "red")
 		if (res.ok) dbMessage.style.setProperty("--c-status", "green")
 		dbMessage.textContent = res.message
@@ -51,5 +63,6 @@ async function init() {
 	events.addEventListener("emojis:delete", handleDocDelete)
 
 	renderEmojiEls(emojisMap, emojisWrap)
+	renderMessagesEls(messagesMap, messagesWrap)
 }
 init()

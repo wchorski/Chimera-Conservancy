@@ -11,38 +11,42 @@
 	</head>
 	<body class="vertical-space-between">
 		<!-- <span data-sync-state="connecting" id="sync-state"> ␖ </span> -->
-		<div class="side-by-side">
-			<section>
+		<section class="side-by-side">
+			<div>
 				<!-- TODO single, auto updating face? -->
 				<img src="/public/logo.svg" width="300" />
 				<h1>Chimera Conservancy</h1>
-			</section>
+      </div>
 
-			<section class="card-grid">
+			<div class="card-grid">
 				<div class="card">
-					<a href="/create/">
-						<h3><!--  -->reate emoji</h3>
+					<a href="/create/" class="btn">
+						<h3>create emoji</h3>
+          </a>
 						<p>
 							Mix and match face, eyes, brows, mouth and more in the emoji
 							creator
 						</p>
-					</a>
 				</div>
 				<div class="card">
-					<a href="/messages/">
-						<h3>write a message</h3>
+					<a href="/messages/" class="btn">
+            <h3>write a message</h3>
+					</a>
 						<p>Craft mad-lib style senarios that incorperate 2 players</p>
-					</a>
 				</div>
 				<div class="card">
-					<a href="/ranch/">
-						<h3>Play</h3>
-						<p>View all the emojis and their interactions on the playfield</p>
+					<a href="/ranch/" class="btn">
+            <h3>Play</h3>
 					</a>
+						<p>View all the emojis and their interactions on the playfield</p>
 				</div>
-			</section>
-		</div>
-		<section id="emojis-wrap"></section>
+			</div>
+		</section>
+    <hr>
+		<section class="grid">
+      <div id="emojis-wrap"></div>
+      <div id="messages-wrap"></div>
+    </section>
 		<section class="settings-wrap">
       <button popovertarget="settings">
         <img
@@ -59,8 +63,8 @@
         <p id="db-message" class="card"></p>
         <h2>Settings</h2>
         <div class="flex">
-          <button id="seed-db-btn">seed emoji database</button>
-          <button id="destroy-db-btn">delete all Emoji docs</button>
+          <button id="seed-db-btn">seed database</button>
+          <button id="destroy-db-btn">delete all docs</button>
         </div>
       </section>
       </div>

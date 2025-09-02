@@ -42,8 +42,9 @@ function insertMessage(doc, i = 0) {
 
 /**
  * @param {Map<string, Message>} map
+ * @param {HTMLElement} msgWrap
  */
-async function render(map) {
+export async function renderMessagesEls(map, msgWrap) {
 	if (!msgWrap) throw new Error("msgWrap not found on dom")
 	//? don't do any data fetching here multi times
 
@@ -71,12 +72,6 @@ async function render(map) {
 	msgWrap.replaceChildren(...nodes)
 }
 
-async function init() {
-	await getAllMessageDocs()
-	render(messagesMap)
-}
-
-init()
 
 // helpers
 /**

@@ -377,31 +377,57 @@ export async function deleteEmoji(doc) {
 	}
 }
 
-// TODO seed database. create new database if one does not exist
-/**
- * Seeds the database with emoji data
- * @returns {Promise<Response>} The result of the seeding operation
- */
 export async function dbSeedDatabase() {
 	try {
-		const response = await fetch("/public/ini/emojis-seed.json")
-		/** @type {Emoji[]} */
-		const docs = await response.json()
-		const docsRemovedRev = docs.map(({ _rev, ...data }) => data)
-		// TODO remove all `_rev` from seed
-		// console.log({ emojiSeed })
-		const res = await dbEmoji.bulkDocs(docsRemovedRev)
-		//@ts-ignore
-		if (res.some((obj) => obj.error === true)) {
-			throw new Error("🌱 database already (or partially) seeded with data")
+		/**
+		 * @param {string} url
+		 * @returns {Promise<Array<NewEmoji | NewMessage>>}
+		 */
+		const fetchAndProcess = async (url) => {
+			const response = await fetch(url)
+			/** @type {Array<Emoji | Message>} */
+			const docs = await response.json()
+			return docs.map(({ _rev, ...data }) => data)
 		}
+
+		/**
+		 * @param {any[]} results
+		 * @returns {number}
+		 */
+		const countErrors = (results) =>
+			results.reduce((count, obj) => count + (obj.error ? 1 : 0), 0)
+		/**
+		 * @param {any[]} results
+		 * @returns {boolean}
+		 */
+		const hasErrors = (results) => results.some((obj) => obj.error === true)
+
+		const [emojiDocs, messageDocs] = await Promise.all([
+			fetchAndProcess("/public/ini/emojis-seed.json"),
+			fetchAndProcess("/public/ini/messages-seed.json"),
+		])
+
+		const [emojiRes, messagesRes] = await Promise.all([
+			dbEmoji.bulkDocs(emojiDocs),
+			dbMessages.bulkDocs(messageDocs),
+		])
+
+		if (hasErrors(emojiRes) || hasErrors(messagesRes)) {
+			const emojiErrors = countErrors(emojiRes)
+			const messageErrors = countErrors(messagesRes)
+
+			throw new Error(
+				`🌱 Database already (or partially) seeded with data.\n` +
+					`Emoji errors: ${emojiErrors}/${emojiRes.length}, ` +
+					`Message errors: ${messageErrors}/${messagesRes.length}`
+			)
+		}
+
 		return {
 			ok: true,
-			message: `Database has been seeded with ${res.length} new docs`,
+			message: `Database seeded with ${messagesRes.length} messages and ${emojiRes.length} emojis`,
 		}
 	} catch (error) {
-		// const seedError = new Error("seedDatabase failed", { cause: error })
-		// console.error(seedError)
 		return {
 			error: true,
 			message: error instanceof Error ? error.message : String(error),
@@ -419,9 +445,10 @@ export async function dbEmojiDeleteMany(docs) {
 		const res = await dbEmoji.bulkDocs(
 			docs.map((doc) => ({ ...doc, _deleted: true }))
 		)
+		// if(!res) throw new Error('db delete res not OK')
 		return {
 			ok: true,
-			message: "All Docs have been marked as _deleted",
+			message: "All Emoji Docs have been marked as _deleted",
 		}
 	} catch (error) {
 		console.log(error)
@@ -435,8 +462,54 @@ export async function dbEmojiDeleteMany(docs) {
 	}
 }
 /**
- * Seeds the database with emoji data
- * @returns {Promise<Response>} The result of the seeding operation
+ * @param {Message[]} docs
+ * @returns {Promise<Response>}
+ */
+export async function dbMessageDeleteMany(docs) {
+	console.log(docs)
+	try {
+		const res = await dbMessages.bulkDocs(
+			docs.map((doc) => ({ ...doc, _deleted: true }))
+		)
+		// if(!res.ok) throw new Error('db delete res not OK')
+		return {
+			ok: true,
+			message: "All Message Docs have been marked as _deleted",
+		}
+	} catch (error) {
+		console.log(error)
+		return {
+			error: true,
+			message:
+				error instanceof Error ? "Database not found" : "Database not found",
+		}
+	}
+}
+/**
+ *
+ * @param {Emoji[]} emojiDocs
+ * @param {Message[]} messageDocs
+ */
+export async function dbDeleteAllDocs(emojiDocs, messageDocs) {
+	try {
+		await dbEmojiDeleteMany(emojiDocs)
+		await dbMessageDeleteMany(messageDocs)
+		return {
+			ok: true,
+			message: "Database: All Docs have been marked as _deleted",
+		}
+	} catch (error) {
+		console.log(error)
+		return {
+			error: true,
+			message:
+				error instanceof Error ? "Database not found" : "Database not found",
+		}
+	}
+}
+
+/**
+ * @returns {Promise<Response>}
  */
 export async function dbEmojiDestroy() {
 	try {
@@ -447,8 +520,6 @@ export async function dbEmojiDestroy() {
 		}
 	} catch (error) {
 		console.log(error)
-		// const seedError = new Error("seedDatabase failed", { cause: error })
-		// console.error(seedError)
 		return {
 			error: true,
 			message:

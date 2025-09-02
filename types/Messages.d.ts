@@ -7,6 +7,7 @@ export type MessageSet = CustomEvent<Message>
 export type MessageDelete = CustomEvent<string>
 
 export type NewMessage = {
+  _id?: string
 	message: string
 }
 
