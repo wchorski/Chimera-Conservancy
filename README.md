@@ -34,6 +34,7 @@ A Mii style emoji editor to create player avitars
 - [ ] fix color issue with cheeks and brows being red after creation
 - [ ] button to init databases with starter data and init/reset data button (on homepage settings sidebar)
 - [ ] emoji model. change `date` to `birthday`
+- [ ] change `messages` to `content` as to avoid confusion with response or error messages
 
 ## Credits
 > Vector Ranks Pack by @RhosGFX!
